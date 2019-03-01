@@ -22,9 +22,9 @@ class FileObject:
         self.isRestricted = isRestricted
         # Whether or not the file has been viewed
         self.isViewed = isViewed
-        # The creation date of the file in yyy-mm-ddTHH:MM:SSSSSZ
+        # The creation date of the file in yyyy-mm-ddTHH:MM:SSSSSZ
         self.createdDate = createdDate
-        # The last modification date of the file in yyy-mm-ddTHH:MM:SSSSSZ
+        # The last modification date of the file in yyyy-mm-ddTHH:MM:SSSSSZ
         self.modifiedDate = modifiedDate
         # The owner of the file's name
         self.ownerName = ownerName
