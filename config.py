@@ -2,8 +2,8 @@
 # filter information
 filetype = ''
 # login credentials 
-USERNAME = ''
-PASSWORD = ''
+USERNAME = input("please input a google account: ")
+PASSWORD = input("please input password: ")
 
 # File Handling Module
 # where to write them
