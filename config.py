@@ -3,10 +3,16 @@ import filetype
 
 # filter information
 def filter(true):
-	filetype = {}
-	while(true):
-		if confirm = True:
-			return filetype
+	filetypelist = {'txt', 'pdf', 'doc', 'docx', 'xls', 'ppt', 'pptx'}
+	mylist = {}
+	while(True):
+		filetype = input('Please input a FileType or Stop: ')
+		if  filetype.capitalize() = 'Stop':
+			return mylist
+		if filetype.lower() in filetypelist:
+			mylist.append(filetype.lower())
+		else:
+			print('Wrong FileType! ')
 
 # File Handling Module
 # txt, pdf, doc, docx, xls, ppt, pptx
@@ -31,9 +37,9 @@ if __name__ == '__main__':
 	#Config Google Account and password
 	Datebase = {} 
 	# login credentials 
-	USERNAME = input("please input a google account: ")
-	if USERNAME in NameDatebase:
-		PASSWORD = input("please input password: ")
+	USERNAME = input('Please input a google account: ')
+	if USERNAME in Datebase:
+		PASSWORD = input('Please input password: ')
 		if Datebase[USERNAME] == PASSWORD:
 			print('Enter Successfully! ')
 		else:
