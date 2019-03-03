@@ -4,13 +4,13 @@ import filetype
 # txt, pdf, doc, docx, xls, ppt, pptx
 def filter(true):
 	filetypelist = ['txt', 'pdf', 'doc', 'docx', 'xls', 'ppt', 'pptx']
-	mylist = []
+	filtering_list = []
 	while(True):
 		filetype = input('Please input a FileType or Stop: ')
 		if filetype.capitalize() == 'Stop':
-			return mylist
+			return filtering_list
 		if filetype.lower() in filetypelist:
-			mylist.append(filetype.lower())
+			filtering_list.append(filetype.lower())
 		else:
 			print('Wrong FileType! ')
 
