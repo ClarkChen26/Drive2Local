@@ -2,6 +2,7 @@ import filetype
 # API Access Module
 
 # filter information
+# txt, pdf, doc, docx, xls, ppt, pptx
 def filter(true):
 	filetypelist = {'txt', 'pdf', 'doc', 'docx', 'xls', 'ppt', 'pptx'}
 	mylist = {}
@@ -15,7 +16,6 @@ def filter(true):
 			print('Wrong FileType! ')
 
 # File Handling Module
-# txt, pdf, doc, docx, xls, ppt, pptx
 def filehandling(file_address):
 	if file_address is not str:
 		print('Address not a string!')
