@@ -110,7 +110,6 @@ def downloadFile(DRIVE, fileid, filename):
 	downloader = http.MediaIoBaseDownload(fh, request)
 	done = False
 	# Download chunks of the file until done
-	print("Downloading "+filename)
 	while done is False:
 		status, done = downloader.next_chunk()
 
@@ -128,6 +127,5 @@ def exportFile(DRIVE, fileid, mimetype, filename):
 	downloader = http.MediaIoBaseDownload(fh, request)
 	done = False
 	# Download chunks of the file until done
-	print("Downloading "+filename)
 	while done is False:
 		status, done = downloader.next_chunk()

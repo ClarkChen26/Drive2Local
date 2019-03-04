@@ -57,16 +57,14 @@ if __name__ == '__main__':
 		# DOWNLOADING
 		if isGoogleFile(f):
 			export_mime = APIAccess.MIME_EXPORT[f['mimeType']]
-			APIAccess.exportFile(DRIVE, f['id'], export_mime, f['name']+APIAccess.MIME_EXTENSIONS[export_mime])
-#       for f in files:
-#               # Handle native Google Drive files
-#               if f['mimeType'] in MIME_EXPORT:
-#                       mimeType = MIME_EXPORT[f['mimeType']]
-#                       extension = MIME_EXTENSIONS[mimeType]
-#                       name = f['name']+extension
-#                       #exportFile(DRIVE, f['id'], mimeType, name)
-#                       print(name, mimeType)
-#               # Handle files uploaded to Google Drive (non-native)
-#               else:
-#                       #downloadFile(DRIVE, f['id'], name)
-#                       print(name, f['mimeType'])
+			try:
+				print("Downloading", f['name'])
+				APIAccess.exportFile(DRIVE, f['id'], export_mime, backup_root+f['name']+APIAccess.MIME_EXTENSIONS[export_mime])
+			except:
+				print("Error: Could not download file ", f['name'], f['id'])
+		else:
+			try:
+				print("Downloading", f['name'])
+				APIAccess.downloadFile(DRIVE, f['id'], backup_root+f['name'])
+			except:
+				print("Error: Could not download file ", f['name'], f['id'])
