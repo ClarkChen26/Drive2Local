@@ -25,6 +25,7 @@ def filehandling(file_address):
 		return
 	return res
 
+
 # where to write them
 file_dir = input("please put a directory that you want to store the backup")
 # how often to write them
@@ -33,7 +34,7 @@ write_time = input("please put a time that you want to back up the file")
 delete_time = input("please put a time that you want to delete the previous backup file")
 
 if __name__ == '__main__':
-	#Config Google Account and password
+	# Config Google Account and password
 	Datebase = {} 
 	# login credentials 
 	USERNAME = input('Please input a google account: ')
