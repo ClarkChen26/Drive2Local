@@ -25,20 +25,31 @@ def getDrive():
 	return DRIVE
 
 def listFiles(DRIVE):
+	# Gets the entire list of files in the DRIVE and stores them in a list variable
 	files = DRIVE.files().list().execute().get('files', [])
+
+	# Iterate through the list of files and print the names, mimetypes, and ids
 	for f in files:
 	    print(f['name'], f['mimeType'], f['id'])
 
 def downloadFile(DRIVE, fileid, mimetype, filename):
+	# Store the fileid in a variable
 	file_id = fileid
+	# Store the exported file within a variable for later use
 	request = DRIVE.files().export_media(fileId=file_id, mimeType=mimetype)
+	# Open a stream up to write bytes to a filename in current working directory
 	fh = io.FileIO(filename, 'wb')
+	# Connect the bytes of exported file to a FileIO stream
 	downloader = http.MediaIoBaseDownload(fh, request)
+	# Boolean to mark when done
 	done = False
+	# While not done, download chunks of bytes through stream until done and print progress
 	while done is False:
 	    status, done = downloader.next_chunk()
 	    print ("Download %d%%." % int(status.progress() * 100))
 
 if __name__ == '__main__':
+	# Setup the users Google Drive and save the instance
 	DRIVE = getDrive()
+	# Download the file from the drive as a word document
 	downloadFile(DRIVE, "1D6tgGZjmhjtgO2dVxw3IlLXgU4JlQsJuluokfs-DYpg", "application/vnd.openxmlformats-officedocument.wordprocessingml.document", "test.docx")
