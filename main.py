@@ -28,6 +28,14 @@ def isFilteredExtension(file):
 	
 	return exten in filetypes
 
+def isGoogleFile(file):
+	'''
+	Checks whether or not the file is a native Google file (as opposed
+	one updloaded to Google Drive)
+	'''
+
+	return file['mimeType'] in APIAccess.MIME_EXPORT
+
 if __name__ == '__main__':
 	# Setup the users Google Drive and save the instance
 	DRIVE = APIAccess.getDrive()
@@ -35,19 +43,21 @@ if __name__ == '__main__':
 	files = APIAccess.getFiles(DRIVE)
 
 	for f in files:
+		# FILTERING
 		if owner_filter:
 			if not isOwned(f):
 				continue
-		if trash_filter:
+		if not trash_filter:
 			if isTrashed(f):
 				continue
-		if filetype_filter:
-			if not isFilteredExtension(f):
-				continue
-		try:
-			print(f['name'], f['fullFileExtension'])
-		except:
-			continue
+#		if filetype_filter:
+#			if not isFilteredExtension(f):
+#				continue
+
+		# DOWNLOADING
+		if isGoogleFile(f):
+			export_mime = APIAccess.MIME_EXPORT[f['mimeType']]
+			APIAccess.exportFile(DRIVE, f['id'], export_mime, f['name']+APIAccess.MIME_EXTENSIONS[export_mime])
 #       for f in files:
 #               # Handle native Google Drive files
 #               if f['mimeType'] in MIME_EXPORT:

@@ -50,8 +50,8 @@ def getDrive():
 	creds = store.get()
 	# If the credentials do not exist or are invalid, get new credentials from the user
 	if not creds or creds.invalid:
-	    flow = client.flow_from_clientsecrets('client_id.json', SCOPES)
-	    creds = tools.run_flow(flow, store)
+		flow = client.flow_from_clientsecrets('client_id.json', SCOPES)
+		creds = tools.run_flow(flow, store)
 
 	# Return the Google Drive of the credentialed user
 	return discovery.build('drive', 'v3', http=creds.authorize(Http()))
@@ -110,8 +110,9 @@ def downloadFile(DRIVE, fileid, filename):
 	downloader = http.MediaIoBaseDownload(fh, request)
 	done = False
 	# Download chunks of the file until done
+	print("Downloading "+filename)
 	while done is False:
-	    status, done = downloader.next_chunk()
+		status, done = downloader.next_chunk()
 
 def exportFile(DRIVE, fileid, mimetype, filename):
 	'''
@@ -127,5 +128,6 @@ def exportFile(DRIVE, fileid, mimetype, filename):
 	downloader = http.MediaIoBaseDownload(fh, request)
 	done = False
 	# Download chunks of the file until done
+	print("Downloading "+filename)
 	while done is False:
-	    status, done = downloader.next_chunk()
+		status, done = downloader.next_chunk()
