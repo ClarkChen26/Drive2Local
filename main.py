@@ -1,15 +1,27 @@
 import APIAccess
 from config import *
 
-def isOwned(fileid):
-	print(APIAccess.getFileMetadata(fileid)['owners'])
+def isOwned(file):
+	'''
+	Returns a boolean representing whether a file is owned by the user.
+	'''
+
+	return file['owners'][0]['me']
+
+def isTrashed(file):
+	'''
+	Returns a boolean representing whether a file has been trashed.
+	'''
+
+	return file['trashed']
 
 if __name__ == '__main__':
 	# Setup the users Google Drive and save the instance
 	DRIVE = APIAccess.getDrive()
 	files = APIAccess.getFiles(DRIVE)
 	for f in files:
-		print(f)
+		if isTrashed(f):
+			print(f['name'])
 #       for f in files:
 #               # Handle native Google Drive files
 #               if f['mimeType'] in MIME_EXPORT:

@@ -56,7 +56,7 @@ def getDrive():
 	# Return the Google Drive of the credentialed user
 	return discovery.build('drive', 'v3', http=creds.authorize(Http()))
 
-def getFiles(DRIVE):
+def getFilesMin(DRIVE):
 	'''
 	Returns a list of all files stored in Google Drive that the user has
 	read access to.
@@ -65,6 +65,16 @@ def getFiles(DRIVE):
 	'''
 
 	return DRIVE.files().list().execute()['files']
+	
+def getFiles(DRIVE):
+	'''
+	Returns a list of all files stored in Google Drive that the user has
+	read access to.
+
+	The list contains all metadata for each file in it.
+	'''
+
+	return DRIVE.files().list(fields="*").execute()['files']
 
 def getFileMetadata(DRIVE, fileid):
 	'''
