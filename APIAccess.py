@@ -74,7 +74,20 @@ def getFiles(DRIVE):
 	The list contains all metadata for each file in it.
 	'''
 
-	return DRIVE.files().list(fields="*").execute()['files']
+	response = DRIVE.files().list(fields="*").execute()
+	try:
+		token = response['nextPageToken']
+		files = response['files']
+	except:
+		print("Error: bad request")
+	while token:
+		response = DRIVE.files().list(fields="*", pageToken=token).execute()
+		files += response['files']
+		try:
+			token = response['nextPageToken']
+		except:
+			break
+	return files
 
 def getFileMetadata(DRIVE, fileid):
 	'''

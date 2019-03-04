@@ -6,10 +6,10 @@
 filetype_filter = ["txt", "pdf", "doc", "docx", "xls", "xlsx", "ppt", "pptx"]
 #
 # Whether or not backups are limited to files owned by the user
-owner_filter = False
+owner_filter = True
 #
 # Whether or not to backup files that have been trashed
-trash_filter = False
+trash_filter = True
 #
 #------------------------------ 
 # LOCAL FILE SETTINGS

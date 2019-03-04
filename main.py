@@ -18,10 +18,17 @@ def isTrashed(file):
 if __name__ == '__main__':
 	# Setup the users Google Drive and save the instance
 	DRIVE = APIAccess.getDrive()
+	# Get a listing of all files the user has access to
 	files = APIAccess.getFiles(DRIVE)
+
 	for f in files:
-		if isTrashed(f):
-			print(f['name'])
+		if owner_filter:
+			if not isOwned(f):
+				continue
+		if trash_filter:
+			if isTrashed(f):
+				continue
+		print(f['name'])
 #       for f in files:
 #               # Handle native Google Drive files
 #               if f['mimeType'] in MIME_EXPORT:
