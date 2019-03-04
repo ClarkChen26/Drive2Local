@@ -3,7 +3,7 @@ class FileObject:
     A class to store information about file objects
     """
     
-    def __init__(self, kind, id, title, mimeType, isStarred, isHidden, isTrashed, isRestricted, isViewed, createdDate, modifiedDate, ownerName, ownerEmail, isEditable, isCopyable):
+    def __init__(self, kind, id, title, mimeType, isStarred, isHidden, isTrashed, isRestricted, isViewed, createdDate, modifiedDate, ownerName, ownerEmail, isEditable, isCopyable, data):
         # The kind of object in Google Drive
         self.kind = kind
         # The id of the file
@@ -34,3 +34,5 @@ class FileObject:
         self.isEditable = isEditable
         # Whether or not the file is copyable by the user
         self.isCopyable = isCopyable
+	# The data of the file
+	self.data = data
