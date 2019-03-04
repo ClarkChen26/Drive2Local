@@ -106,23 +106,3 @@ def exportFile(DRIVE, fileid, mimetype, filename):
 	# Download chunks of the file until done
 	while done is False:
 	    status, done = downloader.next_chunk()
-
-if __name__ == '__main__':
-	# Setup the users Google Drive and save the instance
-	DRIVE = getDrive()
-
-	files = getFiles(DRIVE)
-	for f in files:
-		print(getFileMetadata(DRIVE, f['id']))
-#	for f in files:
-#		# Handle native Google Drive files
-#		if f['mimeType'] in MIME_EXPORT:
-#			mimeType = MIME_EXPORT[f['mimeType']]
-#			extension = MIME_EXTENSIONS[mimeType]
-#			name = f['name']+extension
-#			#exportFile(DRIVE, f['id'], mimeType, name)
-#			print(name, mimeType)
-#		# Handle files uploaded to Google Drive (non-native)
-#		else:
-#			#downloadFile(DRIVE, f['id'], name)
-#			print(name, f['mimeType'])

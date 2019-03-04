@@ -1,12 +1,15 @@
 import APIAccess
+from config import *
+
+def isOwned(fileid):
+	print(APIAccess.getFileMetadata(fileid)['owners'])
 
 if __name__ == '__main__':
-        # Setup the users Google Drive and save the instance
-        DRIVE = APIAccess.getDrive()
-
-        files = APIAccess.getFiles(DRIVE)
-        for f in files:
-                print(f)
+	# Setup the users Google Drive and save the instance
+	DRIVE = APIAccess.getDrive()
+	files = APIAccess.getFiles(DRIVE)
+	for f in files:
+		print(f)
 #       for f in files:
 #               # Handle native Google Drive files
 #               if f['mimeType'] in MIME_EXPORT:
