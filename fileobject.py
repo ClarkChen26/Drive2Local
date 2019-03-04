@@ -34,5 +34,5 @@ class FileObject:
         self.isEditable = isEditable
         # Whether or not the file is copyable by the user
         self.isCopyable = isCopyable
-	# The data of the file
-	self.data = data
+        # The data of the file
+        self.data = data
