@@ -1,5 +1,6 @@
 from __future__ import print_function
 
+import io
 from apiclient import errors
 from apiclient import http
 from apiclient import discovery
@@ -28,9 +29,16 @@ def listFiles(DRIVE):
 	for f in files:
 	    print(f['name'], f['mimeType'], f['id'])
 
-def downloadFile(DRIVE, fileid, mimetype):
-	print (DRIVE.files().export(fileId=fileid, mimeType=mimetype).execute())
+def downloadFile(DRIVE, fileid, mimetype, filename):
+	file_id = fileid
+	request = DRIVE.files().export_media(fileId=file_id, mimeType=mimetype)
+	fh = io.FileIO(filename, 'wb')
+	downloader = http.MediaIoBaseDownload(fh, request)
+	done = False
+	while done is False:
+	    status, done = downloader.next_chunk()
+	    print ("Download %d%%." % int(status.progress() * 100))
 
 if __name__ == '__main__':
 	DRIVE = getDrive()
-	downloadFile(DRIVE, "1D6tgGZjmhjtgO2dVxw3IlLXgU4JlQsJuluokfs-DYpg", "application/vnd.openxmlformats-officedocument.wordprocessingml.document")
+	downloadFile(DRIVE, "1D6tgGZjmhjtgO2dVxw3IlLXgU4JlQsJuluokfs-DYpg", "application/vnd.openxmlformats-officedocument.wordprocessingml.document", "test.docx")
