@@ -2,14 +2,17 @@
 # FILTERS
 #------------------------------ 
 #
+# Whether to filter items based on filetype
+filetype_filter = True
+#
 # Which filetypes to backup
-filetype_filter = ["txt", "pdf", "doc", "docx", "xls", "xlsx", "ppt", "pptx"]
+filetypes = ["txt", "pdf", "doc", "docx", "xls", "xlsx", "ppt", "pptx"]
 #
 # Whether or not backups are limited to files owned by the user
 owner_filter = True
 #
 # Whether or not to backup files that have been trashed
-trash_filter = True
+trash_filter = False
 #
 #------------------------------ 
 # LOCAL FILE SETTINGS
