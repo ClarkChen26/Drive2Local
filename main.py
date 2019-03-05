@@ -23,7 +23,11 @@ def isFilteredExtension(file):
 	'''
 
 	try:
-		exten = f['fileExtension']
+		if isGoogleFile(file):
+			mimeType = APIAccess.MIME_EXPORT[file['mimeType']]
+			exten = APIAccess.MIME_EXTENSIONS[mimeType]
+		else:
+			exten = f['fileExtension']
 	except:
 		return False
 	
