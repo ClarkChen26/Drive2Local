@@ -65,7 +65,7 @@ def getFilesMin(DRIVE):
 
 	The list contains the name, id, and mimeType for each file in it.
 	'''
-	
+
 	response = DRIVE.files().list().execute()['files']
 	try:
 		token = response['nextPageToken']
