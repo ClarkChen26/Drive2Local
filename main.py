@@ -55,9 +55,9 @@ if __name__ == '__main__':
 		if not trash_filter:
 			if isTrashed(f):
 				continue
-#		if filetype_filter:
-#			if not isFilteredExtension(f):
-#				continue
+		if filetype_filter:
+			if not isFilteredExtension(f):
+				continue
 
 		# DOWNLOADING
 		if isGoogleFile(f):
