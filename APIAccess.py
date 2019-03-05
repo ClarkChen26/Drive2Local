@@ -13,7 +13,9 @@ MIME_EXPORT = {
 	# Google Drawing
 	"application/vnd.google-apps.drawing": "image/png",
 	# Google Sheet
-	"application/vnd.google-apps.spreadsheet": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+	"application/vnd.google-apps.spreadsheet": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+	# Google Folder
+	"application/vnd.google-apps.folder" : "application/vnd.google-apps.folder"
 }
 
 # A dictionary of MIME types and their file extensions

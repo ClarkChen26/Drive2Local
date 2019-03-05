@@ -61,10 +61,16 @@ if __name__ == '__main__':
 				print("Downloading", f['name'])
 				APIAccess.exportFile(DRIVE, f['id'], export_mime, backup_root+f['name']+APIAccess.MIME_EXTENSIONS[export_mime])
 			except:
-				print("Error: Could not download file ", f['name'], f['id'])
+				if export_mime == 'application/vnd.google-apps.folder':
+					print("Skipping Folder ", f['name'], f['id'])
+				else:
+					print("Error: Could not download file ", f['name'], f['id'])
 		else:
 			try:
 				print("Downloading", f['name'])
 				APIAccess.downloadFile(DRIVE, f['id'], backup_root+f['name'])
 			except:
-				print("Error: Could not download file ", f['name'], f['id'])
+				if f['mimeType'] == 'application/vnd.google-apps.folder':
+					print("Skipping Folder ", f['name'], f['id'])
+				else:
+					print("Error: Could not download file ", f['name'], f['id'])
