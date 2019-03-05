@@ -58,7 +58,7 @@ if __name__ == '__main__':
 		if isGoogleFile(f):
 			export_mime = APIAccess.MIME_EXPORT[f['mimeType']]
 			# Skip folders
-			if export_mime == "application/vnd.google-apps.folder':
+			if export_mime == "application/vnd.google-apps.folder":
 				continue
 			try:
 				print("Downloading", f['name'])
