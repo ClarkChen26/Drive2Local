@@ -1,3 +1,4 @@
+import sys
 import APIAccess
 from config import *
 
@@ -73,4 +74,5 @@ if __name__ == '__main__':
 				if f['mimeType'] == 'application/vnd.google-apps.folder':
 					print("Skipping Folder ", f['name'], f['id'])
 				else:
-					print("Error: Could not download file ", f['name'], f['id'])
+					err = sys.exc_info()[0]
+					print("Error: Could not download file ", f['name'], f['id'], err)
