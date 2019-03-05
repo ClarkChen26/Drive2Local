@@ -25,7 +25,7 @@ automatic_backup = False
 backup_frequency = 1
 #
 # Path to a directory for backups to be stored in
-backup_root = "/absolute/path/to/backup/root/
+backup_root = "C:\\Users\\chuckthegoat\\Desktop\\BACKUP\\"
 #
 # Whether or not to automatically delete backups
 rotation_on = False

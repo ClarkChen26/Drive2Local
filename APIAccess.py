@@ -65,8 +65,21 @@ def getFilesMin(DRIVE):
 
 	The list contains the name, id, and mimeType for each file in it.
 	'''
-
-	return DRIVE.files().list().execute()['files']
+	
+	response = DRIVE.files().list().execute()['files']
+	try:
+		token = response['nextPageToken']
+		files = response['files']
+	except:
+		print("Error: bad request")
+	while token:
+		response = DRIVE.files().list(fields="*", pageToken=token).execute()
+		files += response['files']
+		try:
+			token = response['nextPageToken']
+		except:
+			break
+	return files
 	
 def getFiles(DRIVE):
 	'''
