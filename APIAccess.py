@@ -20,18 +20,18 @@ MIME_EXPORT = {
 
 # A dictionary of MIME types and their file extensions
 MIME_EXTENSIONS = {
-	"text/html": ".html",
-	"application/zip": ".zip",
-	"text/plain": ".txt",
-	"application/rtf": ".rtf",
-	"application/pdf": ".pdf",
-	"application/vnd.openxmlformats-officedocument.wordprocessingml.document": ".docx",
-	"application/vnd.openxmlformats-officedocument.spreadsheetml.sheet": ".xlsx",
-	"text/csv": ".csv",
-	"image/jpeg": ".jpg",
-	"image/png": ".png",
-	"image/svg+xml": ".svg",
-	"application/vnd.openxmlformats-officedocument.presentationml.presentation": ".pptx"
+	"text/html": "html",
+	"application/zip": "zip",
+	"text/plain": "txt",
+	"application/rtf": "rtf",
+	"application/pdf": "pdf",
+	"application/vnd.openxmlformats-officedocument.wordprocessingml.document": "docx",
+	"application/vnd.openxmlformats-officedocument.spreadsheetml.sheet": "xlsx",
+	"text/csv": "csv",
+	"image/jpeg": "jpg",
+	"image/png": "png",
+	"image/svg+xml": "svg",
+	"application/vnd.openxmlformats-officedocument.presentationml.presentation": "pptx"
 }
 
 def getDrive():

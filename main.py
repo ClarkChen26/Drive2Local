@@ -63,7 +63,7 @@ if __name__ == '__main__':
 				continue
 			try:
 				print("Downloading", f['name'])
-				APIAccess.exportFile(DRIVE, f['id'], export_mime, backup_root+f['name']+APIAccess.MIME_EXTENSIONS[export_mime])
+				APIAccess.exportFile(DRIVE, f['id'], export_mime, backup_root+f['name']+"."+APIAccess.MIME_EXTENSIONS[export_mime])
 			except:
 				print("Error: Could not download file ", f['name'], f['id'])
 		else:
