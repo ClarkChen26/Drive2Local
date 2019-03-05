@@ -57,14 +57,14 @@ if __name__ == '__main__':
 		# DOWNLOADING
 		if isGoogleFile(f):
 			export_mime = APIAccess.MIME_EXPORT[f['mimeType']]
+			# Skip folders
+			if export_mime == "application/vnd.google-apps.folder':
+				continue
 			try:
 				print("Downloading", f['name'])
 				APIAccess.exportFile(DRIVE, f['id'], export_mime, backup_root+f['name']+APIAccess.MIME_EXTENSIONS[export_mime])
 			except:
-				if export_mime == 'application/vnd.google-apps.folder':
-					print("Skipping Folder ", f['name'], f['id'])
-				else:
-					print("Error: Could not download file ", f['name'], f['id'])
+				print("Error: Could not download file ", f['name'], f['id'])
 		else:
 			try:
 				print("Downloading", f['name'])
