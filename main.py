@@ -1,5 +1,5 @@
-import sys
 import APIAccess
+import HandleLocal
 from config import *
 
 def isOwned(file):
@@ -30,7 +30,7 @@ def isFilteredExtension(file):
 			exten = f['fileExtension']
 	except:
 		return False
-	
+
 	return exten in filetypes
 
 def isGoogleFile(file):
@@ -47,6 +47,9 @@ if __name__ == '__main__':
 	# Get a listing of all files the user has access to
 	files = APIAccess.getFiles(DRIVE)
 
+	path = HandleLocal.buildDir()
+
+	# Download loop
 	for f in files:
 		# FILTERING
 		if owner_filter:
@@ -61,22 +64,12 @@ if __name__ == '__main__':
 
 		# DOWNLOADING
 		if isGoogleFile(f):
-			export_mime = APIAccess.MIME_EXPORT[f['mimeType']]
-			# Skip folders
-			if export_mime == "application/vnd.google-apps.folder":
-				continue
-			try:
-				print("Downloading", f['name'])
-				APIAccess.exportFile(DRIVE, f['id'], export_mime, backup_root+f['name']+"."+APIAccess.MIME_EXTENSIONS[export_mime])
-			except:
-				print("Error: Could not download file ", f['name'], f['id'])
+			HandleLocal.writeGoogleFile(DRIVE, path, f)
 		else:
-			try:
-				print("Downloading", f['name'])
-				APIAccess.downloadFile(DRIVE, f['id'], backup_root+f['name'])
-			except:
-				if f['mimeType'] == 'application/vnd.google-apps.folder':
-					print("Skipping Folder ", f['name'], f['id'])
-				else:
-					err = sys.exc_info()[0]
-					print("Error: Could not download file ", f['name'], f['id'], err)
+			HandleLocal.writeFile(DRIVE, path, f)
+
+	# Compress the newly created backup
+	HandleLocal.compressDir(path)
+
+	if rotation_on:
+		HandleLocal.rotateBackups()
