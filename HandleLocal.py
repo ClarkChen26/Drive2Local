@@ -83,7 +83,10 @@ def scheduleBackups():
     '''
     Creates a crontab to run the main file
     '''
-    
-    crontab = CronTab(user=True)
+
+    crontab = CronTab()
     job = crontab.new(command="/path/to/main/file")
+    job.hour.on(backup_hour)
+    job.minute.on(backup_minute)
     job.day.every(backup_frequency)
+    crontab.write_to_user(user=True)

@@ -24,6 +24,10 @@ automatic_backup = False
 # How often automatic backups should be created (in days)
 backup_frequency = 1
 #
+# What time the backups should run
+backup_hour = 0
+backup_minute = 0
+#
 # Path to a directory for backups to be stored in
 backup_root = "/path/to/backup/root/"
 #
