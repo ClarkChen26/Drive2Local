@@ -28,15 +28,12 @@ def writeFile(DRIVE, path, f):
     '''
 
     try:
-        message = "Downloading, " + f['name']
-        Logging.infoLog(message)
-       # Logging.infoLog("Downloading", f['name'])
-
+        Logging.infoLog("Downloading, " + f['name'])
         APIAccess.downloadFile(DRIVE, f['id'], path+"/"+f['name'])
+        Logging.infoLog("Download complete, " + f['name'] + "\n")
     except:
         err = sys.exc_info()[0]
-        #print("Error: Could not download file ", f['name'], f['id'], err)
-        Logging.error("Error: Could not download file " + f['name'] + err)
+        Logging.errorLog("Error: Could not download file " + f['name'] + str(err) + "\n")
 
 
 def writeGoogleFile(DRIVE, path, f):
@@ -51,14 +48,12 @@ def writeGoogleFile(DRIVE, path, f):
     # Skip folders
     if not export_mime == "application/vnd.google-apps.folder":
         try:
-            #print("Downloading", f['name'])
-            message = "Downloading, " + f['name']
-            Logging.infoLog(message)
+            Logging.infoLog("Downloading, " + f['name'])
             APIAccess.exportFile(DRIVE, f['id'], export_mime, path+"/"+f['name'] + "." + APIAccess.MIME_EXTENSIONS[export_mime])
+            Logging.infoLog("Download complete, " + f['name'] + "\n")
         except:
             err = sys.exc_info()[0]
-            #print("Error: Could not download file ", f['name'], f['id'], err)
-            Logging.errorLog("Error: Could not download file " + f['name'] + str(err))
+            Logging.errorLog("Error: Could not download file " + f['name'] + str(err) + "\n")
 
 def compressDir(path):
     '''
@@ -87,8 +82,7 @@ def rotateBackups():
                 if count > rotation_num:
                     os.remove(backup_root+"/"+file)
     except TypeError:
-        #print("No backups found.")
-        Logging.errorLog("No backups found.")
+        Logging.errorLog("No backups found.\n")
 
 def scheduleBackups():
     '''

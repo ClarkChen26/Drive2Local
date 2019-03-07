@@ -71,8 +71,7 @@ def getFilesMin(DRIVE):
 		token = response['nextPageToken']
 		files = response['files']
 	except:
-		#print("Error: bad request")
-		Logging.errorLog("Error: bad request")
+		Logging.errorLog("Error: bad request\n")
 	while token:
 		response = DRIVE.files().list(fields="*", pageToken=token).execute()
 		files += response['files']
@@ -95,8 +94,7 @@ def getFiles(DRIVE):
 		token = response['nextPageToken']
 		files = response['files']
 	except:
-		#print("Error: bad request")
-		Logging.errorLog("Error: bad request")
+		Logging.errorLog("Error: bad request\n")
 	while token:
 		response = DRIVE.files().list(fields="*", pageToken=token).execute()
 		files += response['files']
