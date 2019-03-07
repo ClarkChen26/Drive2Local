@@ -1,26 +1,25 @@
 import logging
 import config
 
-# logging.basicConfig(level=logging.DEBUG,
-#                     format='%(asctime)s %(levelname)s %(message)s',
-#                     filename=config.backup_root + "Drive2Local.log",
-#                     filemode='w')
+logger = logging.getLogger("Drive2Local")
+logger.setLevel(logging.INFO)
+fh = logging.FileHandler(config.backup_root + 'Drive2Local.log', mode='w')
 
-logging.basicConfig(level=logging.INFO,
-                    format='%(asctime)s %(levelname)s %(message)s',
-                    filename=config.backup_root + "Drive2Local.log",
-                    filemode='w')
+# create formatter and add it to the handlers
+formatter = logging.Formatter('%(asctime)s - %(message)s')
+fh.setFormatter(formatter)
+ch = logging.StreamHandler()
+ch.setLevel(logging.INFO)
+ch.setFormatter(formatter)
+# add the handlers to the logger
+logger.addHandler(fh)
+logger.addHandler(ch)
 
 def errorLog(message):
-    logging.error(message)
-
+    logger.error(message)
 
 def debugLog(message):
-    logging.debug(message)
+    logger.debug(message)
 
 def infoLog(message):
-    logging.info(message)
-
-# def warnLog(message):
-#     logging.warning(message)
-
+    logger.info(message)

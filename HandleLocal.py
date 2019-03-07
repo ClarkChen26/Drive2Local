@@ -58,7 +58,7 @@ def writeGoogleFile(DRIVE, path, f):
         except:
             err = sys.exc_info()[0]
             print("Error: Could not download file ", f['name'], f['id'], err)
-            Logging.error("Error: Could not download file " + f['name'] + err)
+            Logging.errorLog("Error: Could not download file " + f['name'] + str(err))
 
 def compressDir(path):
     '''
