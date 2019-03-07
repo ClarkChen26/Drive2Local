@@ -51,13 +51,13 @@ def writeGoogleFile(DRIVE, path, f):
     # Skip folders
     if not export_mime == "application/vnd.google-apps.folder":
         try:
-            print("Downloading", f['name'])
+            #print("Downloading", f['name'])
             message = "Downloading, " + f['name']
             Logging.infoLog(message)
             APIAccess.exportFile(DRIVE, f['id'], export_mime, path+"/"+f['name'] + "." + APIAccess.MIME_EXTENSIONS[export_mime])
         except:
             err = sys.exc_info()[0]
-            print("Error: Could not download file ", f['name'], f['id'], err)
+            #print("Error: Could not download file ", f['name'], f['id'], err)
             Logging.errorLog("Error: Could not download file " + f['name'] + str(err))
 
 def compressDir(path):
@@ -87,7 +87,8 @@ def rotateBackups():
                 if count > rotation_num:
                     os.remove(backup_root+"/"+file)
     except TypeError:
-        print("No backups found.")
+        #print("No backups found.")
+        Logging.errorLog("No backups found.")
 
 def scheduleBackups():
     '''

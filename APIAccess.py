@@ -1,4 +1,4 @@
-import io
+import io, Logging
 from apiclient import http
 from apiclient import discovery
 from httplib2 import Http
@@ -71,7 +71,8 @@ def getFilesMin(DRIVE):
 		token = response['nextPageToken']
 		files = response['files']
 	except:
-		print("Error: bad request")
+		#print("Error: bad request")
+		Logging.errorLog("Error: bad request")
 	while token:
 		response = DRIVE.files().list(fields="*", pageToken=token).execute()
 		files += response['files']
@@ -94,7 +95,8 @@ def getFiles(DRIVE):
 		token = response['nextPageToken']
 		files = response['files']
 	except:
-		print("Error: bad request")
+		#print("Error: bad request")
+		Logging.errorLog("Error: bad request")
 	while token:
 		response = DRIVE.files().list(fields="*", pageToken=token).execute()
 		files += response['files']
