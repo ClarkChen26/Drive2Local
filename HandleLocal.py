@@ -6,6 +6,8 @@ import datetime
 import shutil
 import re
 from crontab import CronTab
+import Logging
+
 
 def buildDir():
     '''
@@ -13,7 +15,7 @@ def buildDir():
     year, month, day, hour, minute, and second.
     '''
 
-    now = datetime.datetime.now().strftime("%Y%m%d%H%M%S")
+    now = datetime.datetime.now().strftime("%Y:%m:%d-%H-%M-%S")
     path = backup_root+now
     if not os.path.exists(path):
         os.makedirs(path)
@@ -26,11 +28,16 @@ def writeFile(DRIVE, path, f):
     '''
 
     try:
-        print("Downloading", f['name'])
+        message = "Downloading, " + f['name']
+        Logging.infoLog(message)
+       # Logging.infoLog("Downloading", f['name'])
+
         APIAccess.downloadFile(DRIVE, f['id'], path+"/"+f['name'])
     except:
         err = sys.exc_info()[0]
-        print("Error: Could not download file ", f['name'], f['id'], err)
+        #print("Error: Could not download file ", f['name'], f['id'], err)
+        Logging.error("Error: Could not download file " + f['name'] + err)
+
 
 def writeGoogleFile(DRIVE, path, f):
     '''
@@ -45,10 +52,13 @@ def writeGoogleFile(DRIVE, path, f):
     if not export_mime == "application/vnd.google-apps.folder":
         try:
             print("Downloading", f['name'])
+            message = "Downloading, " + f['name']
+            Logging.infoLog(message)
             APIAccess.exportFile(DRIVE, f['id'], export_mime, path+"/"+f['name'] + "." + APIAccess.MIME_EXTENSIONS[export_mime])
         except:
             err = sys.exc_info()[0]
             print("Error: Could not download file ", f['name'], f['id'], err)
+            Logging.error("Error: Could not download file " + f['name'] + err)
 
 def compressDir(path):
     '''
