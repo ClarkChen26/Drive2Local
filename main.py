@@ -16,7 +16,6 @@ def isTrashed(file):
 
 	return file['trashed']
 
-# Probably needs some work.
 def isFilteredExtension(file):
 	'''
 	Checks whether or not the file extension is in the filtered list.
