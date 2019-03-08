@@ -31,8 +31,8 @@ backup_minute = 0
 # Path to a directory for backups to be stored in
 backup_root = "/path/to/backup/"
 #
-# Path to a directory for logs to be stored in
-log_root = "/path/to/log/"
+# Path to the logfile
+logfile = "/path/to/logfile"
 #
 # Whether or not to automatically delete backups
 rotation_on = False
