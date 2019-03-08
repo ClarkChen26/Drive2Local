@@ -6,7 +6,7 @@ logger = logging.getLogger("Drive2Local")
 logger.setLevel(logging.INFO)
 
 # Create a FileHandler to store all the log statements
-fh = logging.FileHandler(config.backup_root + 'Drive2Local.log', mode='w')
+fh = logging.FileHandler(config.log_root, mode='w')
 
 # Create formatter and add it to the handlers
 formatter = logging.Formatter('%(asctime)s - %(message)s')
