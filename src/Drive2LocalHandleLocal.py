@@ -45,7 +45,7 @@ def writeGoogleFile(DRIVE, path, f):
     This function is used specifically for native Google files.
     '''
 
-    export_mime = APIAccess.MIME_EXPORT[f['mimeType']]
+    export_mime = Drive2LocalAPIAccess.MIME_EXPORT[f['mimeType']]
     # Skip folders
     if not export_mime == "application/vnd.google-apps.folder":
         try:
