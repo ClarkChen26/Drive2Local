@@ -1,4 +1,4 @@
-import io, Drive2LocalLogging
+import io, os, Drive2LocalLogging
 from apiclient import http
 from apiclient import discovery
 from httplib2 import Http
@@ -47,6 +47,8 @@ def getDrive():
 	# Define the permission scope (readonly to the entire drive)
 	SCOPES = 'https://www.googleapis.com/auth/drive.readonly'
 	# Define the local credential store
+	if not os.path.exists('~/.Drive2Local'):
+		os.mkdir('~/.Drive2Local')
 	store = file.Storage('~/.Drive2Local/storage.json')
 	# Get credentials from the local store
 	creds = store.get()
