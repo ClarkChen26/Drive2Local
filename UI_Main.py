@@ -9,6 +9,7 @@
 import sys
 from PyQt5 import QtCore, QtGui, QtWidgets
 from UI_Setting import Ui_Setting
+import main
 
 class Ui_Main(object):
     def openSetting(self):
@@ -16,6 +17,9 @@ class Ui_Main(object):
         self.ui = Ui_Setting()
         self.ui.setupUi(self.window)
         self.window.show()
+    def StartMainFunction(self):
+        main.main()
+        
     def setupUi(self, Main):
         Main.setObjectName("Main")
         Main.resize(610, 383)
@@ -26,6 +30,7 @@ class Ui_Main(object):
         self.Backup_Button.setFont(font)
         self.Backup_Button.setLocale(QtCore.QLocale(QtCore.QLocale.English, QtCore.QLocale.UnitedStates))
         self.Backup_Button.setObjectName("Backup_Button")
+        self.Backup_Button.clicked.connect(self.StartMainFunction)
         self.Setting_Button = QtWidgets.QPushButton(Main)
         self.Setting_Button.setGeometry(QtCore.QRect(240, 250, 113, 32))
         font = QtGui.QFont()

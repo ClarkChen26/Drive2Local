@@ -39,8 +39,7 @@ def isGoogleFile(file):
 	'''
 
 	return file['mimeType'] in APIAccess.MIME_EXPORT
-
-if __name__ == '__main__':
+def main():
 	# Setup the users Google Drive and save the instance
 	DRIVE = APIAccess.getDrive()
 	# Get a listing of all files the user has access to
@@ -72,3 +71,5 @@ if __name__ == '__main__':
 
 	if rotation_on:
 		HandleLocal.rotateBackups()
+if __name__ == '__main__':
+	main()
