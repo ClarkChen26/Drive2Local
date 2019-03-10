@@ -3,6 +3,7 @@ install:
 	if [ ! -d /etc/Drive2Local/ ]; then mkdir /etc/Drive2Local/; fi
 	cp client_id.json /etc/Drive2Local
 	cp src/*.py /usr/local/bin
+	ln -s /usr/local/bin/Drive2Local.py /usr/local/bin/Drive2Local
 
 clean :
 	if [ -d /etc/Drive2Local/ ]; then rm -rf /etc/Drive2Local/; fi
