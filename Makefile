@@ -7,4 +7,4 @@ install:
 
 clean :
 	if [ -d /etc/Drive2Local/ ]; then rm -rf /etc/Drive2Local/; fi
-	rm /usr/local/bin/Drive2Local*.py
+	rm /usr/local/bin/Drive2Local*
