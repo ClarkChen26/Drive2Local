@@ -3,82 +3,62 @@
 #------------------------------ 
 #
 # Whether to filter items based on filetype
-global filetype_filter
+global filetype_filter = True
 def set_filetype_filter(arg):
 	filetype_filter = arg
-#filetype_filter = True
 #
 # Which filetypes to backup
-global filetypes
-filetypes = []
+global filetypes = []
 def set_filetypes(arg):
 	filetypes = arg
-#filetypes = ["txt", "pdf", "doc", "docx", "xls", "xlsx", "ppt", "pptx"]
 #
 # Whether or not backups are limited to files owned by the user
-global owner_filter
+global owner_filter = True
 def set_owner_filter(arg):
 	owner_filter = arg
-#owner_filter = True
 #
 # Whether or not to backup files that have been trashed
-global trash_filter
+global trash_filter = False
 def set_trash_filter(arg):
 	trash_filter = arg
-#trash_filter = False
 #
 #------------------------------ 
 # LOCAL FILE SETTINGS
 #------------------------------ 
 #
 # Whether or not to automatically create backups
-global automatic_backup
+global automatic_backup = False
 def set_automatic_backup(arg):
 	automatic_backup = arg
-#automatic_backup = False
 #
 # How often automatic backups should be created (in days)
-global backup_frequency
+global backup_frequency = 1
 def set_backup_frequency(arg):
 	backup_frequency = arg
-#backup_frequency = 1
 #
 # What time the backups should run
-global backup_hour
-global backup_minute
+global backup_hour = 0
+global backup_minute = 0
 def set_time(hour, minute):
 	backup_hour = hour
 	backup_minute = minute
-#backup_hour = 0
-#backup_minute = 0
 #
 # Path to a directory for backups to be stored in
-global backup_root
-backup_root = "/Users/kaijingzhang/Drive2Local_Backups/"
+global backup_root = "/path/to/backup/root/"
 def set_backup_root(arg):
 	backup_root = arg
 #
 # Path to the logfile
-global log_root
-log_root = "/Users/kaijingzhang/Drive2Local_logs/drive2local.log"
+global log_root = "/path/to/logroot/"
 def set_log_root(arg):
 	log_root = arg
 #
 # Whether or not to automatically delete backups
-global rotation_on
+global rotation_on = False
 def set_rotation_on(arg):
 	rotation_on = arg
-#rotation_on = False
 #
 # The number of backups to maintain
-global rotation_num
+global rotation_num = 7
 def set_rotation_num(arg):
 	rotation_num = arg
-#rotation_num = 7
-#
-#------------------------------ 
-# GUI SETTINGS
-#------------------------------ 
-#
-# Not yet implemented
-#
