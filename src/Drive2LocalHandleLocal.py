@@ -15,7 +15,7 @@ def buildDir():
     year, month, day, hour, minute, and second.
     '''
 
-    now = datetime.datetime.now().strftime("%Y:%m:%d-%H-%M-%S")
+    now = datetime.datetime.now().strftime("%Y%m%d%H%M%S")
     path = backup_root+now
     if not os.path.exists(path):
         os.makedirs(path)
