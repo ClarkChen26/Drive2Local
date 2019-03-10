@@ -47,9 +47,7 @@ def getDrive():
 	# Define the permission scope (readonly to the entire drive)
 	SCOPES = 'https://www.googleapis.com/auth/drive.readonly'
 	# Define the local credential store
-	if not os.path.exists('~/.Drive2Local'):
-		os.mkdir('~/.Drive2Local')
-	store = file.Storage('~/.Drive2Local/storage.json')
+	store = file.Storage(os.path.expanduser('~/.Drive2Local/storage.json'))
 	# Get credentials from the local store
 	creds = store.get()
 	# If the credentials do not exist or are invalid, get new credentials from the user
