@@ -6,37 +6,18 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>566</width>
-    <height>382</height>
+    <width>580</width>
+    <height>430</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
-  <widget class="QDialogButtonBox" name="buttonBox_2">
-   <property name="geometry">
-    <rect>
-     <x>200</x>
-     <y>300</y>
-     <width>171</width>
-     <height>41</height>
-    </rect>
-   </property>
-   <property name="locale">
-    <locale language="English" country="UnitedStates"/>
-   </property>
-   <property name="orientation">
-    <enum>Qt::Horizontal</enum>
-   </property>
-   <property name="standardButtons">
-    <set>QDialogButtonBox::Apply|QDialogButtonBox::Cancel</set>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label">
+  <widget class="QLabel" name="label_backup_time">
    <property name="geometry">
     <rect>
      <x>50</x>
-     <y>240</y>
+     <y>270</y>
      <width>151</width>
      <height>21</height>
     </rect>
@@ -48,7 +29,7 @@
     <string>Automatic Backup Time </string>
    </property>
   </widget>
-  <widget class="QLabel" name="label_BackupDir">
+  <widget class="QLabel" name="label_backup_dir">
    <property name="geometry">
     <rect>
      <x>40</x>
@@ -67,11 +48,11 @@
     <string>Backup Directory</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="pushButton_3">
+  <widget class="QPushButton" name="pushButton_back_to_menu">
    <property name="geometry">
     <rect>
-     <x>230</x>
-     <y>340</y>
+     <x>220</x>
+     <y>390</y>
      <width>113</width>
      <height>32</height>
     </rect>
@@ -83,11 +64,11 @@
     <string>Back to Menu</string>
    </property>
   </widget>
-  <widget class="QCheckBox" name="checkBox">
+  <widget class="QCheckBox" name="checkBox_auto_backup">
    <property name="geometry">
     <rect>
-     <x>200</x>
-     <y>170</y>
+     <x>210</x>
+     <y>200</y>
      <width>141</width>
      <height>21</height>
     </rect>
@@ -99,7 +80,7 @@
     <string>Automatic Backup</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="Button_BackupDir">
+  <widget class="QPushButton" name="Button_backup_dir">
    <property name="geometry">
     <rect>
      <x>150</x>
@@ -115,11 +96,11 @@
     <string>Select</string>
    </property>
   </widget>
-  <widget class="QCheckBox" name="check_Trash">
+  <widget class="QCheckBox" name="checkBox_trash">
    <property name="geometry">
     <rect>
      <x>310</x>
-     <y>100</y>
+     <y>140</y>
      <width>151</width>
      <height>21</height>
     </rect>
@@ -132,7 +113,7 @@
    <property name="geometry">
     <rect>
      <x>200</x>
-     <y>240</y>
+     <y>270</y>
      <width>118</width>
      <height>24</height>
     </rect>
@@ -141,21 +122,21 @@
     <locale language="English" country="UnitedStates"/>
    </property>
   </widget>
-  <widget class="QSpinBox" name="spinBox">
+  <widget class="QSpinBox" name="spinBox_frequency">
    <property name="geometry">
     <rect>
      <x>170</x>
-     <y>200</y>
+     <y>230</y>
      <width>48</width>
      <height>21</height>
     </rect>
    </property>
   </widget>
-  <widget class="QLabel" name="label_2">
+  <widget class="QLabel" name="label_backup_frequency">
    <property name="geometry">
     <rect>
      <x>50</x>
-     <y>200</y>
+     <y>230</y>
      <width>121</width>
      <height>21</height>
     </rect>
@@ -167,11 +148,11 @@
     <string>Backup Frequency</string>
    </property>
   </widget>
-  <widget class="QLabel" name="label_5">
+  <widget class="QLabel" name="label_frequency_day">
    <property name="geometry">
     <rect>
      <x>220</x>
-     <y>200</y>
+     <y>230</y>
      <width>61</width>
      <height>21</height>
     </rect>
@@ -180,7 +161,7 @@
     <string>Day</string>
    </property>
   </widget>
-  <widget class="QLabel" name="label_LogDir">
+  <widget class="QLabel" name="label_log_dir">
    <property name="geometry">
     <rect>
      <x>290</x>
@@ -199,7 +180,7 @@
     <string>Backup Log Directory</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="Button_LogDir">
+  <widget class="QPushButton" name="Button_log_dir">
    <property name="geometry">
     <rect>
      <x>430</x>
@@ -215,11 +196,11 @@
     <string>Select</string>
    </property>
   </widget>
-  <widget class="QCheckBox" name="check_Only">
+  <widget class="QCheckBox" name="checkBox_own_fIle">
    <property name="geometry">
     <rect>
      <x>310</x>
-     <y>70</y>
+     <y>100</y>
      <width>191</width>
      <height>21</height>
     </rect>
@@ -231,11 +212,11 @@
     <string>Only Backup Files You Own</string>
    </property>
   </widget>
-  <widget class="QLabel" name="label_7">
+  <widget class="QLabel" name="label_backup_numbers">
    <property name="geometry">
     <rect>
      <x>50</x>
-     <y>280</y>
+     <y>310</y>
      <width>221</width>
      <height>21</height>
     </rect>
@@ -247,21 +228,21 @@
     <string>The Number of Backups to Maintain</string>
    </property>
   </widget>
-  <widget class="QSpinBox" name="spinBox_2">
+  <widget class="QSpinBox" name="spinBox_backup_numbers">
    <property name="geometry">
     <rect>
      <x>270</x>
-     <y>280</y>
+     <y>310</y>
      <width>48</width>
      <height>21</height>
     </rect>
    </property>
   </widget>
-  <widget class="QCheckBox" name="checkBox_4">
+  <widget class="QCheckBox" name="checkBox_auto_delete">
    <property name="geometry">
     <rect>
      <x>330</x>
-     <y>280</y>
+     <y>310</y>
      <width>181</width>
      <height>21</height>
     </rect>
@@ -273,11 +254,11 @@
     <string>Automatic Delete Backup</string>
    </property>
   </widget>
-  <widget class="QCheckBox" name="check_ft1">
+  <widget class="QCheckBox" name="check_txt">
    <property name="geometry">
     <rect>
      <x>40</x>
-     <y>100</y>
+     <y>120</y>
      <width>51</width>
      <height>20</height>
     </rect>
@@ -286,11 +267,11 @@
     <string>txt</string>
    </property>
   </widget>
-  <widget class="QCheckBox" name="check_ft2">
+  <widget class="QCheckBox" name="check_pdf">
    <property name="geometry">
     <rect>
      <x>90</x>
-     <y>100</y>
+     <y>120</y>
      <width>51</width>
      <height>20</height>
     </rect>
@@ -299,12 +280,12 @@
     <string>pdf</string>
    </property>
   </widget>
-  <widget class="QCheckBox" name="checkBox_7">
+  <widget class="QCheckBox" name="checkBox_doc">
    <property name="geometry">
     <rect>
      <x>40</x>
-     <y>120</y>
-     <width>87</width>
+     <y>140</y>
+     <width>51</width>
      <height>20</height>
     </rect>
    </property>
@@ -312,12 +293,12 @@
     <string>doc</string>
    </property>
   </widget>
-  <widget class="QCheckBox" name="checkBox_8">
+  <widget class="QCheckBox" name="checkBox_docx">
    <property name="geometry">
     <rect>
      <x>90</x>
-     <y>120</y>
-     <width>87</width>
+     <y>140</y>
+     <width>61</width>
      <height>20</height>
     </rect>
    </property>
@@ -325,12 +306,12 @@
     <string>docx</string>
    </property>
   </widget>
-  <widget class="QCheckBox" name="checkBox_9">
+  <widget class="QCheckBox" name="checkBox_xls">
    <property name="geometry">
     <rect>
      <x>150</x>
-     <y>100</y>
-     <width>87</width>
+     <y>120</y>
+     <width>41</width>
      <height>20</height>
     </rect>
    </property>
@@ -338,12 +319,12 @@
     <string>xls</string>
    </property>
   </widget>
-  <widget class="QCheckBox" name="checkBox_10">
+  <widget class="QCheckBox" name="checkBox_xlsx">
    <property name="geometry">
     <rect>
      <x>200</x>
-     <y>100</y>
-     <width>87</width>
+     <y>120</y>
+     <width>51</width>
      <height>20</height>
     </rect>
    </property>
@@ -351,12 +332,12 @@
     <string>xlsx</string>
    </property>
   </widget>
-  <widget class="QCheckBox" name="checkBox_11">
+  <widget class="QCheckBox" name="checkBox_ppt">
    <property name="geometry">
     <rect>
      <x>150</x>
-     <y>120</y>
-     <width>111</width>
+     <y>140</y>
+     <width>51</width>
      <height>20</height>
     </rect>
    </property>
@@ -364,12 +345,12 @@
     <string>ppt</string>
    </property>
   </widget>
-  <widget class="QCheckBox" name="checkBox_12">
+  <widget class="QCheckBox" name="checkBox_pptx">
    <property name="geometry">
     <rect>
      <x>200</x>
-     <y>120</y>
-     <width>81</width>
+     <y>140</y>
+     <width>51</width>
      <height>21</height>
     </rect>
    </property>
@@ -377,11 +358,11 @@
     <string>pptx</string>
    </property>
   </widget>
-  <widget class="Line" name="line">
+  <widget class="Line" name="Horizontal_line">
    <property name="geometry">
     <rect>
      <x>40</x>
-     <y>150</y>
+     <y>180</y>
      <width>511</width>
      <height>16</height>
     </rect>
@@ -396,11 +377,11 @@
     <enum>Qt::Horizontal</enum>
    </property>
   </widget>
-  <widget class="QCheckBox" name="check_Based">
+  <widget class="QCheckBox" name="checkBox_file_type">
    <property name="geometry">
     <rect>
      <x>40</x>
-     <y>70</y>
+     <y>90</y>
      <width>221</width>
      <height>21</height>
     </rect>
@@ -409,11 +390,11 @@
     <string>Backup Items Based on File Type </string>
    </property>
   </widget>
-  <widget class="Line" name="line_2">
+  <widget class="Line" name="Vertical_line">
    <property name="geometry">
     <rect>
      <x>270</x>
-     <y>70</y>
+     <y>90</y>
      <width>20</width>
      <height>81</height>
     </rect>
@@ -422,24 +403,69 @@
     <enum>Qt::Vertical</enum>
    </property>
   </widget>
-  <widget class="QTextBrowser" name="textBrowser">
+  <widget class="QTextBrowser" name="textBrowser_backup">
    <property name="geometry">
     <rect>
      <x>40</x>
      <y>40</y>
      <width>221</width>
-     <height>16</height>
+     <height>41</height>
     </rect>
    </property>
   </widget>
-  <widget class="QTextBrowser" name="textBrowser_2">
+  <widget class="QTextBrowser" name="textBrowser_log">
    <property name="geometry">
     <rect>
      <x>290</x>
      <y>40</y>
      <width>221</width>
+     <height>41</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton_apply">
+   <property name="geometry">
+    <rect>
+     <x>140</x>
+     <y>360</y>
+     <width>111</width>
+     <height>32</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Apply</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton_cancel">
+   <property name="geometry">
+    <rect>
+     <x>310</x>
+     <y>360</y>
+     <width>111</width>
+     <height>32</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Cancel</string>
+   </property>
+  </widget>
+  <widget class="Line" name="Horizontal_line_2">
+   <property name="geometry">
+    <rect>
+     <x>40</x>
+     <y>340</y>
+     <width>511</width>
      <height>16</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true"/>
+   </property>
+   <property name="locale">
+    <locale language="English" country="UnitedStates"/>
+   </property>
+   <property name="orientation">
+    <enum>Qt::Horizontal</enum>
    </property>
   </widget>
  </widget>
