@@ -9,6 +9,7 @@
 import sys
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QFileDialog
+import Drive2LocalConfig as config
 
 class Ui_Setting(object):
     # initial global value for text browser display
@@ -207,8 +208,76 @@ class Ui_Setting(object):
         self.timeEdit.setGeometry(QtCore.QRect(200, 270, 118, 24))
         self.timeEdit.setLocale(QtCore.QLocale(QtCore.QLocale.English, QtCore.QLocale.UnitedStates))
         self.timeEdit.setObjectName("timeEdit")
+        self.pushButton_apply.clicked.connect(self.accept)
+
         self.retranslateUi(Setting)
         QtCore.QMetaObject.connectSlotsByName(Setting)
+
+    def accept(self):
+        #Set filetype_filter
+        if self.checkBox_file_type.isChecked():
+            config.set_filetype_filter(True)
+            #print(str(config.filetype_filter))
+        else:
+            config.set_filetype_filter(False)
+            #print(str(config.filetype_filter))
+
+        #Set filetypes
+        if self.checkBox_txt.isChecked():
+            config.set_filetypes('txt')
+        if self.checkBox_pdf.isChecked():
+            config.set_filetypes('pdf')
+        if self.checkBox_doc.isChecked():
+            config.set_filetypes('doc')
+        if self.checkBox_docx.isChecked():
+            config.set_filetypes('docx')
+        if self.checkBox_xls.isChecked():
+            config.set_filetypes('xls')
+        if self.checkBox_xlsx.isChecked():
+            config.set_filetypes('xlsx')
+        if self.checkBox_ppt.isChecked():
+            config.set_filetypes('ppt')
+        if self.checkBox_pptx.isChecked():
+            config.set_filetypes('pptx')
+
+        #Set owner_filter
+        if self.checkBox_own_file.isChecked():
+            config.set_owner_filter(True)
+        else:
+            config.set_owner_filter(False)
+
+        #Set trash_filter
+        if self.checkBox_trash.isChecked():
+            config.set_trash_filter(True)
+        else:
+            config.set_trash_filter(False)
+
+        #Set automatic_backup
+        if self.checkBox_auto_backup.isChecked():
+            config.set_automatic_backup(True)
+        else:
+            config.set_automatic_backup(False)
+
+        #Set backup_frequency
+        config.set_backup_frequency(self.spinBox_frequency.value())
+
+        #Set what time the backups should run
+        ntime = self.timeEdit.time().toString()
+        config.set_time(int(ntime[:2]),int(ntime[3:5]))
+
+        #Set rotation_on
+        if self.checkBox_auto_delete.isChecked():
+            config.set_rotation_on(True)
+        else:
+            config.set_rotation_on(False)
+
+        #Set rotation_num
+        config.set_rotation_num(self.spinBox_backup_numbers.value())
+
+        #Set backup_root and log_root
+        if backup_dir != "Choose the Directory to Store Backups" and log_dir != "Choose the Directory to Store Backup Logs":
+            config.set_backup_root(backup_dir)
+            config.set_log_root(log_dir)
 
     def retranslateUi(self, Setting):
         _translate = QtCore.QCoreApplication.translate
