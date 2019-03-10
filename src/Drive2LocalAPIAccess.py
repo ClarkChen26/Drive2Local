@@ -44,10 +44,13 @@ def getDrive():
 	Returns a token representing authorized access to the user's Google Drive.
 	'''
 
+	userpath = os.path.expanduser('~/.Drive2Local')
 	# Define the permission scope (readonly to the entire drive)
 	SCOPES = 'https://www.googleapis.com/auth/drive.readonly'
 	# Define the local credential store
-	store = file.Storage(os.path.expanduser('~/.Drive2Local/storage.json'))
+	if not os.path.exists(userpath):
+		os.mkdir(userpath)
+	store = file.Storage(userpath+'/storage.json')
 	# Get credentials from the local store
 	creds = store.get()
 	# If the credentials do not exist or are invalid, get new credentials from the user
