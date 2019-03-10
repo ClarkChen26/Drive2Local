@@ -1,6 +1,6 @@
-import APIAccess
-import HandleLocal
+import APIAccess, HandleLocal
 from config import *
+
 
 def isOwned(file):
 	'''
@@ -9,12 +9,14 @@ def isOwned(file):
 
 	return file['owners'][0]['me']
 
+
 def isTrashed(file):
 	'''
 	Returns a boolean representing whether a file has been trashed.
 	'''
 
 	return file['trashed']
+
 
 def isFilteredExtension(file):
 	'''
@@ -26,11 +28,12 @@ def isFilteredExtension(file):
 			mimeType = APIAccess.MIME_EXPORT[file['mimeType']]
 			exten = APIAccess.MIME_EXTENSIONS[mimeType]
 		else:
-			exten = f['fileExtension']
+			exten = file['fileExtension']
 	except:
 		return False
 
 	return exten in filetypes
+
 
 def isGoogleFile(file):
 	'''
@@ -39,6 +42,8 @@ def isGoogleFile(file):
 	'''
 
 	return file['mimeType'] in APIAccess.MIME_EXPORT
+
+
 def main():
 	# Setup the users Google Drive and save the instance
 	DRIVE = APIAccess.getDrive()
@@ -71,5 +76,7 @@ def main():
 
 	if rotation_on:
 		HandleLocal.rotateBackups()
+
+
 if __name__ == '__main__':
 	main()
