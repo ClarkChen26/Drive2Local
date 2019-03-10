@@ -21,6 +21,7 @@ def buildDir():
         os.makedirs(path)
     return path
 
+
 def writeFile(DRIVE, path, f):
     '''
     Calls the APIAccess module to download a file object, then writes it
@@ -55,6 +56,7 @@ def writeGoogleFile(DRIVE, path, f):
             err = sys.exc_info()[0]
             Logging.errorLog("Error: Could not download file " + f['name'] + str(err) + "\n")
 
+
 def compressDir(path):
     '''
     Compresses a target directory to a zipfile.
@@ -64,6 +66,7 @@ def compressDir(path):
     shutil.make_archive(path, "zip", path)
     # Deletes the unzipped folder
     shutil.rmtree(path)
+
 
 def rotateBackups():
     '''
@@ -83,6 +86,7 @@ def rotateBackups():
                     os.remove(backup_root+"/"+file)
     except TypeError:
         Logging.errorLog("No backups found.\n")
+
 
 def scheduleBackups():
     '''
