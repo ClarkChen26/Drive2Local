@@ -1,0 +1,3 @@
+#!/bin/bash
+
+osascript -e 'tell application "Terminal" to set currentTab to do script ("/usr/local/bin/Drive2LocalUIMain.py & exit")'
