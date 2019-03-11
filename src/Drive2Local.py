@@ -46,13 +46,13 @@ def isGoogleFile(file):
 
 
 def main():
+	# Setup logger
+	Drive2LocalLogging.setupLogger()
+	
 	# Setup the users Google Drive and save the instance
 	DRIVE = Drive2LocalAPIAccess.getDrive()
 	# Get a listing of all files the user has access to
 	files = Drive2LocalAPIAccess.getFiles(DRIVE)
-
-	# Setup logger
-	Drive2LocalLogging.setupLogger()
 
 	path = Drive2LocalHandleLocal.buildDir()
 

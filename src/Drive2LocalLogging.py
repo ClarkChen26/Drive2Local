@@ -1,14 +1,14 @@
 import logging
 import Drive2LocalConfig
 
-
-logger = logging.getLogger("Drive2Local")
+global logger
 
 def setupLogger():
     '''
     Sets up the logger functionality
-    :return:
     '''
+
+    logger = logging.getLogger("Drive2Local")
 
     # Set up logger called Drive2Local
     logger.setLevel(logging.INFO)
