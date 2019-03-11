@@ -4,7 +4,7 @@
 #
 # Whether to filter items based on filetype
 global filetype_filter
-filetype_filter = True
+filetype_filter = False
 def set_filetype_filter(arg):
 	filetype_filter = arg
 #
