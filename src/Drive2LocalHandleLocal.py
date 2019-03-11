@@ -50,7 +50,7 @@ def writeGoogleFile(DRIVE, path, f):
     if not export_mime == "application/vnd.google-apps.folder":
         try:
             Drive2LocalLogging.infoLog("Downloading, " + f['name'])
-            Drive2LocalAPIAccess.exportFile(DRIVE, f['id'], export_mime, path+"/"+f['name'] + "." + APIAccess.MIME_EXTENSIONS[export_mime])
+            Drive2LocalAPIAccess.exportFile(DRIVE, f['id'], export_mime, path+"/"+f['name'] + "." + Drive2LocalAPIAccess.MIME_EXTENSIONS[export_mime])
             Drive2LocalLogging.infoLog("Download complete, " + f['name'] + "\n")
         except:
             err = sys.exc_info()[0]
