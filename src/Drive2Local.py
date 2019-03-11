@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-import Drive2LocalAPIAccess, Drive2LocalHandleLocal
+import Drive2LocalAPIAccess, Drive2LocalHandleLocal, Drive2LocalLogging
 from Drive2LocalConfig import *
 
 
@@ -50,6 +50,9 @@ def main():
 	DRIVE = Drive2LocalAPIAccess.getDrive()
 	# Get a listing of all files the user has access to
 	files = Drive2LocalAPIAccess.getFiles(DRIVE)
+
+	# Setup logger
+	Drive2LocalLogging.setupLogger()
 
 	path = Drive2LocalHandleLocal.buildDir()
 
