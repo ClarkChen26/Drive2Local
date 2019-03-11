@@ -1,4 +1,4 @@
-import io, os, Drive2LocalLogging
+import io, os
 from apiclient import http
 from apiclient import discovery
 from httplib2 import Http
@@ -61,7 +61,7 @@ def getDrive():
 	# Return the Google Drive of the credentialed user
 	return discovery.build('drive', 'v3', http=creds.authorize(Http()))
 
-def getFilesMin(DRIVE):
+def getFilesMin(DRIVE, logger):
 	'''
 	Returns a list of all files stored in Google Drive that the user has
 	read access to.
@@ -74,7 +74,7 @@ def getFilesMin(DRIVE):
 		token = response['nextPageToken']
 		files = response['files']
 	except:
-		Drive2LocalLogging.errorLog("Error: bad request\n")
+		logger.error("Error: bad request\n")
 	while token:
 		response = DRIVE.files().list(fields="*", pageToken=token).execute()
 		files += response['files']
@@ -97,7 +97,7 @@ def getFiles(DRIVE):
 		token = response['nextPageToken']
 		files = response['files']
 	except:
-		Drive2LocalLogging.errorLog("Error: bad request\n")
+		logger.error("Error: bad request\n")
 	while token:
 		response = DRIVE.files().list(fields="*", pageToken=token).execute()
 		files += response['files']

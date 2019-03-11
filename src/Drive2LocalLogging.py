@@ -6,6 +6,7 @@ global logger
 def setupLogger():
     '''
     Sets up the logger functionality
+
     '''
 
     logger = logging.getLogger("Drive2Local")
@@ -36,24 +37,26 @@ def setupLogger():
     logger.addHandler(fh)
     logger.addHandler(ch)
 
+    return logger
 
-def errorLog(message):
-    '''
-    Logs an error message using the specified logger above.
-    '''
 
-    logger.error(message)
-
-def debugLog(message):
-    '''
-    Logs an debug message using the specified logger above.
-    '''
-
-    logger.debug(message)
-
-def infoLog(message):
-    '''
-    Logs an info message using the specified logger above.
-    '''
-
-    logger.info(message)
+# def errorLog(message):
+#     '''
+#     Logs an error message using the specified logger above.
+#     '''
+#
+#     logger.error(message)
+#
+# def debugLog(message):
+#     '''
+#     Logs an debug message using the specified logger above.
+#     '''
+#
+#     logger.debug(message)
+#
+# def infoLog(message):
+#     '''
+#     Logs an info message using the specified logger above.
+#     '''
+#
+#     logger.info(message)

@@ -47,7 +47,7 @@ def isGoogleFile(file):
 
 def main():
 	# Setup logger
-	Drive2LocalLogging.setupLogger()
+	Drive_logger = Drive2LocalLogging.setupLogger()
 	
 	# Setup the users Google Drive and save the instance
 	DRIVE = Drive2LocalAPIAccess.getDrive()
@@ -71,9 +71,9 @@ def main():
 
 		# DOWNLOADING
 		if isGoogleFile(f):
-			Drive2LocalHandleLocal.writeGoogleFile(DRIVE, path, f)
+			Drive2LocalHandleLocal.writeGoogleFile(DRIVE, path, f, Drive_logger)
 		else:
-			Drive2LocalHandleLocal.writeFile(DRIVE, path, f)
+			Drive2LocalHandleLocal.writeFile(DRIVE, path, f, Drive_logger)
 
 	# Compress the newly created backup
 	Drive2LocalHandleLocal.compressDir(path)

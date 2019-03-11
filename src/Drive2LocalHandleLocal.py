@@ -6,7 +6,7 @@ import datetime
 import shutil
 import re
 from crontab import CronTab
-import Drive2LocalLogging
+
 
 
 def buildDir():
@@ -22,22 +22,22 @@ def buildDir():
     return path
 
 
-def writeFile(DRIVE, path, f):
+def writeFile(DRIVE, path, f, logger):
     '''
     Calls the APIAccess module to download a file object, then writes it
     to the path and filename given.
     '''
 
     try:
-        Drive2LocalLogging.infoLog("Downloading, " + f['name'])
+        logger.info("Downloading, " + f['name'])
         Drive2LocalAPIAccess.downloadFile(DRIVE, f['id'], path+"/"+f['name'])
-        Drive2LocalLogging.infoLog("Download complete, " + f['name'] + "\n")
+        logger.info("Download complete, " + f['name'] + "\n")
     except:
         err = sys.exc_info()[0]
-        Drive2LocalLogging.errorLog("Error: Could not download file " + f['name'] + str(err) + "\n")
+        logger.error("Error: Could not download file " + f['name'] + str(err) + "\n")
 
 
-def writeGoogleFile(DRIVE, path, f):
+def writeGoogleFile(DRIVE, path, f, logger):
     '''
     Calls the APIAccess module to download a file object, then writes it
     to the path and filename given.
@@ -49,12 +49,12 @@ def writeGoogleFile(DRIVE, path, f):
     # Skip folders
     if not export_mime == "application/vnd.google-apps.folder":
         try:
-            Drive2LocalLogging.infoLog("Downloading, " + f['name'])
+            logger.info("Downloading, " + f['name'])
             Drive2LocalAPIAccess.exportFile(DRIVE, f['id'], export_mime, path+"/"+f['name'] + "." + Drive2LocalAPIAccess.MIME_EXTENSIONS[export_mime])
-            Drive2LocalLogging.infoLog("Download complete, " + f['name'] + "\n")
+            logger.info("Download complete, " + f['name'] + "\n")
         except:
             err = sys.exc_info()[0]
-            Drive2LocalLogging.errorLog("Error: Could not download file " + f['name'] + str(err) + "\n")
+            logger.error("Error: Could not download file " + f['name'] + str(err) + "\n")
 
 
 def compressDir(path):
