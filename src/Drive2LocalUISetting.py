@@ -5,18 +5,19 @@
 # Created by: PyQt5 UI code generator 5.12
 #
 # WARNING! All changes made in this file will be lost!
-import os
+
 import sys
 from PyQt5 import QtCore, QtGui, QtWidgets
-from PyQt5.QtWidgets import QFileDialog
+from PyQt5.QtWidgets import QFileDialog, QApplication
 #import Drive2LocalConfig as config
 
 class Ui_Setting(object):
 	# initial global value for text browser display
-	#global backup_dir, log_dir
+	# global backup_dir, log_dir
 	def __init__(self):
 		self.backup_dir = "Choose the Directory to Store Backups"
 		self.log_dir = "Choose the Directory to Store Backup Logs"
+		self.message = ""
 	
 	def open_backup_dir(self):
 		# choose an existing directory from users local drive as the dirctory to store the backups
@@ -27,7 +28,7 @@ class Ui_Setting(object):
 		# choose an existing directory from users local drive as the dirctory to store the backup logs
 		self.log_dir = QFileDialog.getExistingDirectory(None, "select directory")
 		self.textBrowser_log.setText(self.log_dir)
-		
+	
 	def setupUi(self, Setting):
 		# canvas size
 		Setting.setObjectName("Setting")
@@ -36,8 +37,7 @@ class Ui_Setting(object):
 		# ################
 		# #	Labels	#
 		# ################
-		# label backup time
-
+		# label backup time 
 		self.label_backup_time = QtWidgets.QLabel(Setting)
 		self.label_backup_time.setGeometry(QtCore.QRect(50, 270, 151, 21))
 		self.label_backup_time.setLocale(QtCore.QLocale(QtCore.QLocale.English, QtCore.QLocale.UnitedStates))
@@ -68,6 +68,11 @@ class Ui_Setting(object):
 		self.label_backup_numbers.setGeometry(QtCore.QRect(50, 310, 221, 21))
 		self.label_backup_numbers.setLocale(QtCore.QLocale(QtCore.QLocale.English, QtCore.QLocale.UnitedStates))
 		self.label_backup_numbers.setObjectName("label_backup_numbers")
+		# lable the change save message
+		self.label_commit_message = QtWidgets.QLabel(Setting)
+		self.label_commit_message.setGeometry(QtCore.QRect(190, 390, 191, 20))
+		self.label_commit_message.setObjectName("label_commit_message")
+		
 
 		# #################
 		# #	Buttons	#
@@ -88,13 +93,8 @@ class Ui_Setting(object):
 		self.Button_log_dir.clicked.connect(self.open_log_dir)
 		# button apply
 		self.pushButton_apply = QtWidgets.QPushButton(Setting)
-		self.pushButton_apply.setGeometry(QtCore.QRect(140, 360, 111, 32))
+		self.pushButton_apply.setGeometry(QtCore.QRect(230, 360, 111, 32))
 		self.pushButton_apply.setObjectName("pushButton_apply")
-		# button cancel
-		self.pushButton_cancel = QtWidgets.QPushButton(Setting)
-		self.pushButton_cancel.setGeometry(QtCore.QRect(310, 360, 111, 32))
-		self.pushButton_cancel.setObjectName("pushButton_cancel")
-
 		# ###################
 		# #	CheckBoxs	#
 		# ###################
@@ -205,59 +205,22 @@ class Ui_Setting(object):
 		self.textBrowser_log = QtWidgets.QTextBrowser(Setting)
 		self.textBrowser_log.setGeometry(QtCore.QRect(290, 40, 221, 41))
 		self.textBrowser_log.setObjectName("textBrowser_log")
-
 		# time for auto back up
 		self.timeEdit = QtWidgets.QTimeEdit(Setting)
 		self.timeEdit.setGeometry(QtCore.QRect(200, 270, 118, 24))
 		self.timeEdit.setLocale(QtCore.QLocale(QtCore.QLocale.English, QtCore.QLocale.UnitedStates))
 		self.timeEdit.setObjectName("timeEdit")
 		self.pushButton_apply.clicked.connect(self.accept)
-
-
 		self.retranslateUi(Setting)
 		QtCore.QMetaObject.connectSlotsByName(Setting)
 
-		if os.path.exists("/tmp/temp_config.txt"):
-			file = open("/tmp/temp_config.txt", "r")
-			l = file.read().splitlines()
-
-			if l[0] == "True":
-				self.checkBox_file_type.setChecked(True)
-
-			if "txt" in l[1]:
-				self.checkBox_txt.setChecked(True)
-			if "pdf" in l[1]:
-				self.checkBox_pdf.setChecked(True)
-			if "doc" in l[1]:
-				self.checkBox_doc.setChecked(True)
-			if "docx" in l[1]:
-				self.checkBox_docx.setChecked(True)
-			if "xls" in l[1]:
-				self.checkBox_xls.setChecked(True)
-			if "xlsx" in l[1]:
-				self.checkBox_xlsx.setChecked(True)
-			if "ppt" in l[1]:
-				self.checkBox_ppt.setChecked(True)
-			if "pptx" in l[1]:
-				self.checkBox_pptx.setChecked(True)
-
-			self.spinBox_frequency.setValue(int(l[5]))
-
-			if l[2] == "True":
-				self.checkBox_own_file.setChecked(True)
-
-			if l[3] == "True":
-				self.checkBox_trash.setChecked(True)
-
-			time = QtCore.QTime(int(l[6]), int(l[7]), 0, 0)
-			self.timeEdit.setTime(time)
-			self.spinBox_backup_numbers.setValue(int(l[11]))
-			self.textBrowser_backup.setText(l[8])
-			self.textBrowser_log.setText(l[9])
-
-
 	def accept(self):
-
+		QtWidgets.qApp.processEvents()
+		self.message = "Your settings have been applied!"
+		self.label_commit_message.setStyleSheet("background-color:lightgreen")
+		self.label_commit_message.setText(self.message)
+		
+		QApplication.processEvents()
 		file = open("/tmp/temp_config.txt", 'w')
 		#Set filetype_filter
 		if self.checkBox_file_type.isChecked():
@@ -333,16 +296,16 @@ class Ui_Setting(object):
 
 		#Set backup_root and log_root
 		if self.backup_dir != "Choose the Directory to Store Backups":
-			file.write(str(self.backup_dir)+'/'+"\n")
+			file.write(str(self.backup_dir)+"\n")
 			#config.set_backup_root(backup_dir)
 			#config.set_log_root(log_dir)
 		else:
-			file.write("./\n")
+			file.write("\"\"\n")
 
 		if self.log_dir != "Choose the Directory to Store Backup Logs":
-			file.write(str(self.backup_dir)+'/'+"\n")
+			file.write(str(self.backup_dir)+"\n")
 		else:
-			file.write("./\n")
+			file.write("\"\"\n")
 
 		#Set rotation_on
 		if self.checkBox_auto_delete.isChecked():
@@ -355,7 +318,6 @@ class Ui_Setting(object):
 		#Set rotation_num
 		file.write(str(self.spinBox_backup_numbers.value()))
 		#config.set_rotation_num(self.spinBox_backup_numbers.value())
-
 		file.close()
 
 	def retranslateUi(self, Setting):
@@ -384,7 +346,7 @@ class Ui_Setting(object):
 		self.checkBox_pptx.setText(_translate("Setting", "pptx"))
 		self.checkBox_file_type.setText(_translate("Setting", "Backup Items Based on File Type "))
 		self.pushButton_apply.setText(_translate("Setting", "Apply"))
-		self.pushButton_cancel.setText(_translate("Setting", "Cancel"))
 		self.textBrowser_backup.setText(_translate("Setting", self.backup_dir))
 		self.textBrowser_log.setText(_translate("Setting", self.log_dir))
+		self.label_commit_message.setText(_translate("Setting", self.message))
 
