@@ -8,7 +8,7 @@
 import os
 import sys
 from PyQt5 import QtCore, QtGui, QtWidgets
-from PyQt5.QtWidgets import QFileDialog
+from PyQt5.QtWidgets import QFileDialog, QApplication
 #import Drive2LocalConfig as config
 
 class Ui_Setting(object):
@@ -17,6 +17,7 @@ class Ui_Setting(object):
 	def __init__(self):
 		self.backup_dir = "Choose the Directory to Store Backups"
 		self.log_dir = "Choose the Directory to Store Backup Logs"
+		self.message = ""
 	
 	def open_backup_dir(self):
 		# choose an existing directory from users local drive as the dirctory to store the backups
@@ -69,6 +70,11 @@ class Ui_Setting(object):
 		self.label_backup_numbers.setLocale(QtCore.QLocale(QtCore.QLocale.English, QtCore.QLocale.UnitedStates))
 		self.label_backup_numbers.setObjectName("label_backup_numbers")
 
+		# lable the change save message
+		self.label_commit_message = QtWidgets.QLabel(Setting)
+		self.label_commit_message.setGeometry(QtCore.QRect(190, 390, 191, 20))
+		self.label_commit_message.setObjectName("label_commit_message")
+
 		# #################
 		# #	Buttons	#
 		# #################
@@ -88,12 +94,9 @@ class Ui_Setting(object):
 		self.Button_log_dir.clicked.connect(self.open_log_dir)
 		# button apply
 		self.pushButton_apply = QtWidgets.QPushButton(Setting)
-		self.pushButton_apply.setGeometry(QtCore.QRect(140, 360, 111, 32))
 		self.pushButton_apply.setObjectName("pushButton_apply")
-		# button cancel
-		self.pushButton_cancel = QtWidgets.QPushButton(Setting)
-		self.pushButton_cancel.setGeometry(QtCore.QRect(310, 360, 111, 32))
-		self.pushButton_cancel.setObjectName("pushButton_cancel")
+		self.pushButton_apply.setGeometry(QtCore.QRect(230, 360, 111, 32))
+
 
 		# ###################
 		# #	CheckBoxs	#
@@ -258,6 +261,13 @@ class Ui_Setting(object):
 
 	def accept(self):
 
+		QtWidgets.qApp.processEvents()
+		self.message = "Your settings have been applied!"
+		self.label_commit_message.setStyleSheet("background-color:lightgreen")
+		self.label_commit_message.setText(self.message)
+
+		QApplication.processEvents()
+
 		file = open("/tmp/temp_config.txt", 'w')
 		#Set filetype_filter
 		if self.checkBox_file_type.isChecked():
@@ -384,7 +394,7 @@ class Ui_Setting(object):
 		self.checkBox_pptx.setText(_translate("Setting", "pptx"))
 		self.checkBox_file_type.setText(_translate("Setting", "Backup Items Based on File Type "))
 		self.pushButton_apply.setText(_translate("Setting", "Apply"))
-		self.pushButton_cancel.setText(_translate("Setting", "Cancel"))
 		self.textBrowser_backup.setText(_translate("Setting", self.backup_dir))
 		self.textBrowser_log.setText(_translate("Setting", self.log_dir))
+		self.label_commit_message.setText(_translate("Setting", self.message))
 
