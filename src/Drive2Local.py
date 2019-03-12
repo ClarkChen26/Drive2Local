@@ -56,6 +56,8 @@ def main():
 
 	Drive_logger = Drive2LocalLogging.setupLogger(config_list)
 
+	Drive_logger.info("Backup Initiating")
+
 	os.system("open " + config_list[9] + "backup.log")
 	
 	# Setup the users Google Drive and save the instance
