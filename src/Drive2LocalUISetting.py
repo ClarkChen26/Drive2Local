@@ -5,7 +5,7 @@
 # Created by: PyQt5 UI code generator 5.12
 #
 # WARNING! All changes made in this file will be lost!
-
+import os
 import sys
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QFileDialog
@@ -36,7 +36,8 @@ class Ui_Setting(object):
 		# ################
 		# #	Labels	#
 		# ################
-		# label backup time 
+		# label backup time
+
 		self.label_backup_time = QtWidgets.QLabel(Setting)
 		self.label_backup_time.setGeometry(QtCore.QRect(50, 270, 151, 21))
 		self.label_backup_time.setLocale(QtCore.QLocale(QtCore.QLocale.English, QtCore.QLocale.UnitedStates))
@@ -212,10 +213,51 @@ class Ui_Setting(object):
 		self.timeEdit.setObjectName("timeEdit")
 		self.pushButton_apply.clicked.connect(self.accept)
 
+
 		self.retranslateUi(Setting)
 		QtCore.QMetaObject.connectSlotsByName(Setting)
 
+		if os.path.exists("/tmp/temp_config.txt"):
+			file = open("/tmp/temp_config.txt", "r")
+			l = file.read().split('\n')
+
+			if l[0] == "True":
+				self.checkBox_file_type.setChecked(True)
+
+			if "txt" in l[1]:
+				self.checkBox_txt.setChecked(True)
+			if "pdf" in l[1]:
+				self.checkBox_pdf.setChecked(True)
+			if "doc" in l[1]:
+				self.checkBox_doc.setChecked(True)
+			if "docx" in l[1]:
+				self.checkBox_docx.setChecked(True)
+			if "xls" in l[1]:
+				self.checkBox_xls.setChecked(True)
+			if "xlsx" in l[1]:
+				self.checkBox_xlsx.setChecked(True)
+			if "ppt" in l[1]:
+				self.checkBox_ppt.setChecked(True)
+			if "pptx" in l[1]:
+				self.checkBox_pptx.setChecked(True)
+
+			self.spinBox_frequency.setValue(int(l[5]))
+
+			if l[2] == "True":
+				self.checkBox_own_file.setChecked(True)
+
+			if l[3] == "True":
+				self.checkBox_trash.setChecked(True)
+
+			time = QtCore.QTime(int(l[6]), int(l[7]), 0, 0)
+			self.timeEdit.setTime(time)
+			self.spinBox_backup_numbers.setValue(int(l[11]))
+			self.textBrowser_backup.setText(l[8])
+			self.textBrowser_log.setText(l[9])
+
+
 	def accept(self):
+
 		file = open("/tmp/temp_config.txt", 'w')
 		#Set filetype_filter
 		if self.checkBox_file_type.isChecked():

@@ -84,7 +84,7 @@ def config_setup():
 	# #
 	# # The number of backups to maintain
 	# global rotation_num
-	# rotation_num = l[1]
+	# rotation_num = l[11]
 	# #def set_rotation_num(arg):
 	# #	rotation_num = arg
 
