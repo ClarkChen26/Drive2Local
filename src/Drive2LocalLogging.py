@@ -36,6 +36,7 @@ def setupLogger():
     # Add the handlers to the logger
     logger.addHandler(fh)
     logger.addHandler(ch)
+    logger.info("Drive2Local Log File")
 
     return logger
 

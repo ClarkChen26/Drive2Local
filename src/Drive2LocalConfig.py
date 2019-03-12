@@ -53,13 +53,13 @@ def set_time(hour, minute):
 #
 # Path to a directory for backups to be stored in
 global backup_root
-backup_root = "/path/to/backup/root/"
+backup_root = ""
 def set_backup_root(arg):
 	backup_root = arg
 #
 # Path to the logfile
 global log_root
-log_root = "/path/to/logroot/"
+log_root = ""
 def set_log_root(arg):
 	log_root = arg
 #
