@@ -1,5 +1,5 @@
 import Drive2LocalAPIAccess
-from Drive2LocalConfig import *
+#from Drive2LocalConfig import *
 import sys
 import os
 import datetime
@@ -8,7 +8,7 @@ import re
 from crontab import CronTab
 
 
-def buildDir():
+def buildDir(backup_root):
     '''
     Builds a directory under the backup root named using the current
     year, month, day, hour, minute, and second.
@@ -75,7 +75,7 @@ def compressDir(path):
     shutil.rmtree(path)
 
 
-def rotateBackups(logger):
+def rotateBackups(logger, backup_root, rotation_num):
     '''
     Deletes old backups until there are less than the
     number specified by rotate_num in the config file.
@@ -95,7 +95,7 @@ def rotateBackups(logger):
         logger.error("No old backups found.\n")
 
 
-def scheduleBackups():
+def scheduleBackups(backup_hour, backup_minute, backup_frequency):
     '''
     Creates a crontab to run the main file
     '''

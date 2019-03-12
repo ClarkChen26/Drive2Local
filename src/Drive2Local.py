@@ -20,7 +20,7 @@ def isTrashed(file):
 	return file['trashed']
 
 
-def isFilteredExtension(file):
+def isFilteredExtension(file, config):
 	'''
 	Checks whether or not the file extension is in the filtered list.
 	'''
@@ -34,7 +34,8 @@ def isFilteredExtension(file):
 	except:
 		return False
 
-	return exten in filetypes
+	return exten in config[1]
+	#filetypes
 
 
 def isGoogleFile(file):
@@ -48,29 +49,29 @@ def isGoogleFile(file):
 
 def main():
 	# Setup logger
+	config_list = config_setup()
 
-	Drive_logger = Drive2LocalLogging.setupLogger()
+
+	Drive_logger = Drive2LocalLogging.setupLogger(config_list)
 	
 	# Setup the users Google Drive and save the instance
 	DRIVE = Drive2LocalAPIAccess.getDrive()
 	# Get a listing of all files the user has access to
 	files = Drive2LocalAPIAccess.getFiles(DRIVE, Drive_logger)
 
-	path = Drive2LocalHandleLocal.buildDir()
-	print(backup_root)
-	print(log_root)
+	path = Drive2LocalHandleLocal.buildDir(config_list[8])
 
 	# Download loop
 	for f in files:
 		# FILTERING
-		if owner_filter:
+		if config_list[2]:
 			if not isOwned(f):
 				continue
-		if not trash_filter:
+		if not config_list[3]:
 			if isTrashed(f):
 				continue
-		if filetype_filter:
-			if not isFilteredExtension(f):
+		if config_list[0]:
+			if not isFilteredExtension(f, config_list):
 				continue
 
 		# DOWNLOADING
@@ -87,8 +88,9 @@ def main():
 	# Compress the newly created backup
 	Drive2LocalHandleLocal.compressDir(path)
 
-	if rotation_on:
-		Drive2LocalHandleLocal.rotateBackups(Drive_logger)
+	if config_list[10]:
+		# rotation_on
+		Drive2LocalHandleLocal.rotateBackups(Drive_logger, config_list[8], config_list[11])
 
 	Drive_logger.info("Backup Complete")
 
