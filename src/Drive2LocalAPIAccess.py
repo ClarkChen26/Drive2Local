@@ -93,11 +93,14 @@ def getFiles(DRIVE, logger):
 	'''
 
 	response = DRIVE.files().list(fields="*").execute()
+	token = ""
+	
 	try:
 		token = response['nextPageToken']
 		files = response['files']
 	except:
 		logger.error("Error: bad request\n")
+
 	while token:
 		response = DRIVE.files().list(fields="*", pageToken=token).execute()
 		files += response['files']
@@ -105,6 +108,7 @@ def getFiles(DRIVE, logger):
 			token = response['nextPageToken']
 		except:
 			break
+
 	return files
 
 def getFileMetadata(DRIVE, fileid):
