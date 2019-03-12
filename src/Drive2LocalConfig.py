@@ -11,7 +11,7 @@ def config_setup():
 	global l
 	if os.path.exists("/tmp/temp_config.txt"):
 		file = open("/tmp/temp_config.txt", "r")
-		l = file.read().split()
+		l = file.read().splitlines()
 	# # else:
 	# # 	l = [False, [], True, False, False, 1, 0, 0, str('./'), str('./'), False, 7]
 	# #

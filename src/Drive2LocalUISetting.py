@@ -219,7 +219,7 @@ class Ui_Setting(object):
 
 		if os.path.exists("/tmp/temp_config.txt"):
 			file = open("/tmp/temp_config.txt", "r")
-			l = file.read().split('\n')
+			l = file.read().splitlines()
 
 			if l[0] == "True":
 				self.checkBox_file_type.setChecked(True)
