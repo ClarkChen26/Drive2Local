@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+import os
+
 import Drive2LocalAPIAccess, Drive2LocalHandleLocal, Drive2LocalLogging
 from Drive2LocalConfig import *
 
@@ -53,6 +55,8 @@ def main():
 
 
 	Drive_logger = Drive2LocalLogging.setupLogger(config_list)
+
+	os.system("open " + config_list[9] + "backup.log")
 	
 	# Setup the users Google Drive and save the instance
 	DRIVE = Drive2LocalAPIAccess.getDrive()
@@ -60,6 +64,7 @@ def main():
 	files = Drive2LocalAPIAccess.getFiles(DRIVE, Drive_logger)
 
 	path = Drive2LocalHandleLocal.buildDir(config_list[8])
+
 
 	# Download loop
 	for f in files:
