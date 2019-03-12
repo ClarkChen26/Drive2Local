@@ -70,10 +70,15 @@ def main():
 				continue
 
 		# DOWNLOADING
-		if isGoogleFile(f):
-			Drive2LocalHandleLocal.writeGoogleFile(DRIVE, path, f, Drive_logger)
-		else:
-			Drive2LocalHandleLocal.writeFile(DRIVE, path, f, Drive_logger)
+		try:
+			if isGoogleFile(f):
+				if Drive2LocalHandleLocal.writeGoogleFile(DRIVE, path, f, Drive_logger) == 1:
+					break
+			else:
+				if Drive2LocalHandleLocal.writeFile(DRIVE, path, f, Drive_logger) == 1:
+					break
+		except KeyboardInterrupt:
+			break
 
 	# Compress the newly created backup
 	Drive2LocalHandleLocal.compressDir(path)

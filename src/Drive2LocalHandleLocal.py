@@ -32,9 +32,13 @@ def writeFile(DRIVE, path, f, logger):
         logger.info("Downloading, " + f['name'])
         Drive2LocalAPIAccess.downloadFile(DRIVE, f['id'], path+"/"+f['name'])
         logger.info("Download complete, " + f['name'] + "\n")
+    except KeyboardInterrupt:
+        return 1
     except:
         err = sys.exc_info()[0]
         logger.error("Error: Could not download file " + f['name'] + str(err) + "\n")
+    return 0
+	
 
 
 def writeGoogleFile(DRIVE, path, f, logger):
@@ -52,9 +56,12 @@ def writeGoogleFile(DRIVE, path, f, logger):
             logger.info("Downloading, " + f['name'])
             Drive2LocalAPIAccess.exportFile(DRIVE, f['id'], export_mime, path+"/"+f['name'] + "." + Drive2LocalAPIAccess.MIME_EXTENSIONS[export_mime])
             logger.info("Download complete, " + f['name'] + "\n")
+        except KeyboardInterrupt:
+            return 1
         except:
             err = sys.exc_info()[0]
             logger.error("Error: Could not download file " + f['name'] + str(err) + "\n")
+    return 0
 
 
 def compressDir(path):
