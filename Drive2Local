@@ -1,2 +1,2 @@
 #!/bin/bash
-python3 /usr/local/bin/Drive2LocalUIMain.py & quit
+python3 /usr/local/bin/Drive2LocalUIMain.py & exit
