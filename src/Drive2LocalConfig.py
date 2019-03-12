@@ -7,7 +7,7 @@ if os.path.exists("/tmp/temp_config.txt"):
 	file = open("/tmp/temp_config.txt", "r")
 	l = file.read().split()
 else:
-	l = [False, [], True, False, False, 1, 0, 0, "", "", False, 7]
+	l = [False, [], True, False, False, 1, 0, 0, str('./'), str('./'), False, 7]
 #
 # Whether to filter items based on filetype
 global filetype_filter

@@ -291,16 +291,16 @@ class Ui_Setting(object):
 
 		#Set backup_root and log_root
 		if self.backup_dir != "Choose the Directory to Store Backups":
-			file.write(str(self.backup_dir)+"\n")
+			file.write(str(self.backup_dir)+'/'+"\n")
 			#config.set_backup_root(backup_dir)
 			#config.set_log_root(log_dir)
 		else:
-			file.write("\"\"\n")
+			file.write("./\n")
 
 		if self.log_dir != "Choose the Directory to Store Backup Logs":
-			file.write(str(self.backup_dir)+"\n")
+			file.write(str(self.backup_dir)+'/'+"\n")
 		else:
-			file.write("\"\"\n")
+			file.write("./\n")
 
 		#Set rotation_on
 		if self.checkBox_auto_delete.isChecked():

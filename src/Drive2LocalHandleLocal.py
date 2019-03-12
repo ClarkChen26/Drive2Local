@@ -1,12 +1,11 @@
-import Drive2LocalAPIAccess
-from Drive2LocalConfig import *
+import src.Drive2LocalAPIAccess
+from src.Drive2LocalConfig import *
 import sys
 import os
 import datetime
 import shutil
 import re
 from crontab import CronTab
-
 
 
 def buildDir():
@@ -16,9 +15,11 @@ def buildDir():
     '''
 
     now = datetime.datetime.now().strftime("%Y%m%d%H%M%S")
-    path = backup_root+now
+    path = backup_root + now
+
     if not os.path.exists(path):
         os.makedirs(path)
+
     return path
 
 
@@ -30,7 +31,7 @@ def writeFile(DRIVE, path, f, logger):
 
     try:
         logger.info("Downloading, " + f['name'])
-        Drive2LocalAPIAccess.downloadFile(DRIVE, f['id'], path+"/"+f['name'])
+        src.Drive2LocalAPIAccess.downloadFile(DRIVE, f['id'], path+"/"+f['name'])
         logger.info("Download complete, " + f['name'] + "\n")
     except KeyboardInterrupt:
         return 1
@@ -38,7 +39,6 @@ def writeFile(DRIVE, path, f, logger):
         err = sys.exc_info()[0]
         logger.error("Error: Could not download file " + f['name'] + str(err) + "\n")
     return 0
-	
 
 
 def writeGoogleFile(DRIVE, path, f, logger):
@@ -49,12 +49,12 @@ def writeGoogleFile(DRIVE, path, f, logger):
     This function is used specifically for native Google files.
     '''
 
-    export_mime = Drive2LocalAPIAccess.MIME_EXPORT[f['mimeType']]
+    export_mime = src.Drive2LocalAPIAccess.MIME_EXPORT[f['mimeType']]
     # Skip folders
     if not export_mime == "application/vnd.google-apps.folder":
         try:
             logger.info("Downloading, " + f['name'])
-            Drive2LocalAPIAccess.exportFile(DRIVE, f['id'], export_mime, path+"/"+f['name'] + "." + Drive2LocalAPIAccess.MIME_EXTENSIONS[export_mime])
+            src.Drive2LocalAPIAccess.exportFile(DRIVE, f['id'], export_mime, path+"/"+f['name'] + "." + src.Drive2LocalAPIAccess.MIME_EXTENSIONS[export_mime])
             logger.info("Download complete, " + f['name'] + "\n")
         except KeyboardInterrupt:
             return 1
@@ -75,7 +75,7 @@ def compressDir(path):
     shutil.rmtree(path)
 
 
-def rotateBackups():
+def rotateBackups(logger):
     '''
     Deletes old backups until there are less than the
     number specified by rotate_num in the config file.
@@ -92,7 +92,7 @@ def rotateBackups():
                 if count > rotation_num:
                     os.remove(backup_root+"/"+file)
     except TypeError:
-        Drive2LocalLogging.errorLog("No backups found.\n")
+        logger.error("No old backups found.\n")
 
 
 def scheduleBackups():
