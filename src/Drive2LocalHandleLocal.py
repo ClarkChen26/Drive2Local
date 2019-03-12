@@ -1,5 +1,5 @@
-import src.Drive2LocalAPIAccess
-from src.Drive2LocalConfig import *
+import Drive2LocalAPIAccess
+from Drive2LocalConfig import *
 import sys
 import os
 import datetime
@@ -31,7 +31,7 @@ def writeFile(DRIVE, path, f, logger):
 
     try:
         logger.info("Downloading, " + f['name'])
-        src.Drive2LocalAPIAccess.downloadFile(DRIVE, f['id'], path+"/"+f['name'])
+        Drive2LocalAPIAccess.downloadFile(DRIVE, f['id'], path+"/"+f['name'])
         logger.info("Download complete, " + f['name'] + "\n")
     except KeyboardInterrupt:
         return 1
@@ -49,12 +49,12 @@ def writeGoogleFile(DRIVE, path, f, logger):
     This function is used specifically for native Google files.
     '''
 
-    export_mime = src.Drive2LocalAPIAccess.MIME_EXPORT[f['mimeType']]
+    export_mime = Drive2LocalAPIAccess.MIME_EXPORT[f['mimeType']]
     # Skip folders
     if not export_mime == "application/vnd.google-apps.folder":
         try:
             logger.info("Downloading, " + f['name'])
-            src.Drive2LocalAPIAccess.exportFile(DRIVE, f['id'], export_mime, path+"/"+f['name'] + "." + src.Drive2LocalAPIAccess.MIME_EXTENSIONS[export_mime])
+            Drive2LocalAPIAccess.exportFile(DRIVE, f['id'], export_mime, path+"/"+f['name'] + "." + Drive2LocalAPIAccess.MIME_EXTENSIONS[export_mime])
             logger.info("Download complete, " + f['name'] + "\n")
         except KeyboardInterrupt:
             return 1

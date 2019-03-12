@@ -1,5 +1,5 @@
 import logging
-import src.Drive2LocalConfig
+import Drive2LocalConfig
 
 global logger
 
@@ -16,11 +16,11 @@ def setupLogger():
     logger.setLevel(logging.INFO)
 
     # Create a FileHandler to store all the log statements
-    if src.Drive2LocalConfig.log_root:
-        fh = logging.FileHandler(src.Drive2LocalConfig.log_root + "backup.log", mode='w')
+    if Drive2LocalConfig.log_root:
+        fh = logging.FileHandler(Drive2LocalConfig.log_root + "backup.log", mode='w')
 
-    elif src.Drive2LocalConfig.backup_root:
-        fh = logging.FileHandler(src.Drive2LocalConfig.backup_root + "backup.log", mode='w')
+    elif Drive2LocalConfig.backup_root:
+        fh = logging.FileHandler(Drive2LocalConfig.backup_root + "backup.log", mode='w')
 
     else:
         fh = logging.FileHandler("./backup.log", mode='w')

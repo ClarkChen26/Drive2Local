@@ -10,8 +10,8 @@
 
 import sys
 from PyQt5 import QtCore, QtGui, QtWidgets
-from src.Drive2LocalUISetting import Ui_Setting
-import src.Drive2Local
+from Drive2LocalUISetting import Ui_Setting
+import Drive2Local
 
 class Ui_Main(object):
     def openSetting(self):
@@ -20,7 +20,7 @@ class Ui_Main(object):
         self.ui.setupUi(self.window)
         self.window.show()
     def StartMainFunction(self):
-        src.Drive2Local.main()
+        Drive2Local.main()
         
     def setupUi(self, Main):
         Main.setObjectName("Main")

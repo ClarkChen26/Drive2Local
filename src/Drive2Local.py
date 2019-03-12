@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
-import src.Drive2LocalAPIAccess, src.Drive2LocalHandleLocal, src.Drive2LocalLogging
-from src.Drive2LocalConfig import *
+import Drive2LocalAPIAccess, Drive2LocalHandleLocal, Drive2LocalLogging
+from Drive2LocalConfig import *
 
 
 
@@ -27,8 +27,8 @@ def isFilteredExtension(file):
 
 	try:
 		if isGoogleFile(file):
-			mimeType = src.Drive2LocalAPIAccess.MIME_EXPORT[file['mimeType']]
-			exten = src.Drive2LocalAPIAccess.MIME_EXTENSIONS[mimeType]
+			mimeType = Drive2LocalAPIAccess.MIME_EXPORT[file['mimeType']]
+			exten = Drive2LocalAPIAccess.MIME_EXTENSIONS[mimeType]
 		else:
 			exten = file['fileExtension']
 	except:
@@ -43,20 +43,20 @@ def isGoogleFile(file):
 	one updloaded to Google Drive)
 	'''
 
-	return file['mimeType'] in src.Drive2LocalAPIAccess.MIME_EXPORT
+	return file['mimeType'] in Drive2LocalAPIAccess.MIME_EXPORT
 
 
 def main():
 	# Setup logger
 
-	Drive_logger = src.Drive2LocalLogging.setupLogger()
+	Drive_logger = Drive2LocalLogging.setupLogger()
 	
 	# Setup the users Google Drive and save the instance
-	DRIVE = src.Drive2LocalAPIAccess.getDrive()
+	DRIVE = Drive2LocalAPIAccess.getDrive()
 	# Get a listing of all files the user has access to
-	files = src.Drive2LocalAPIAccess.getFiles(DRIVE, Drive_logger)
+	files = Drive2LocalAPIAccess.getFiles(DRIVE, Drive_logger)
 
-	path = src.Drive2LocalHandleLocal.buildDir()
+	path = Drive2LocalHandleLocal.buildDir()
 	print(backup_root)
 	print(log_root)
 
@@ -76,19 +76,19 @@ def main():
 		# DOWNLOADING
 		try:
 			if isGoogleFile(f):
-				if src.Drive2LocalHandleLocal.writeGoogleFile(DRIVE, path, f, Drive_logger) == 1:
+				if Drive2LocalHandleLocal.writeGoogleFile(DRIVE, path, f, Drive_logger) == 1:
 					break
 			else:
-				if src.Drive2LocalHandleLocal.writeFile(DRIVE, path, f, Drive_logger) == 1:
+				if Drive2LocalHandleLocal.writeFile(DRIVE, path, f, Drive_logger) == 1:
 					break
 		except KeyboardInterrupt:
 			break
 
 	# Compress the newly created backup
-	src.Drive2LocalHandleLocal.compressDir(path)
+	Drive2LocalHandleLocal.compressDir(path)
 
 	if rotation_on:
-		src.Drive2LocalHandleLocal.rotateBackups(Drive_logger)
+		Drive2LocalHandleLocal.rotateBackups(Drive_logger)
 
 	Drive_logger.info("Backup Complete")
 
