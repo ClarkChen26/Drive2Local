@@ -97,8 +97,8 @@ def getFiles(DRIVE, logger):
 	files = ""
 
 	try:
-		token = response['nextPageToken']
 		files = response['files']
+		token = response['nextPageToken']
 	except:
 		logger.error("Error: bad request\n")
 
