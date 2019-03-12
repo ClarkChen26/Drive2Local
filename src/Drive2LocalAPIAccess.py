@@ -94,7 +94,8 @@ def getFiles(DRIVE, logger):
 
 	response = DRIVE.files().list(fields="*").execute()
 	token = ""
-	
+	files = ""
+
 	try:
 		token = response['nextPageToken']
 		files = response['files']
