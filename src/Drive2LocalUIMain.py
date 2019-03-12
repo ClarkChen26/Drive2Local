@@ -15,16 +15,22 @@ import Drive2Local
 
 class Ui_Main(object):
     def openSetting(self):
+        # link to Uisetting
         self.window = QtWidgets.QMainWindow()
         self.ui = Ui_Setting()
         self.ui.setupUi(self.window)
         self.window.show()
+
     def StartMainFunction(self):
+        # run main program
         Drive2Local.main()
         
     def setupUi(self, Main):
+        # initial the value for canvas
         Main.setObjectName("Main")
         Main.resize(610, 383)
+
+        # back button
         self.Backup_Button = QtWidgets.QPushButton(Main)
         self.Backup_Button.setGeometry(QtCore.QRect(240, 190, 113, 32))
         font = QtGui.QFont()
@@ -33,6 +39,8 @@ class Ui_Main(object):
         self.Backup_Button.setLocale(QtCore.QLocale(QtCore.QLocale.English, QtCore.QLocale.UnitedStates))
         self.Backup_Button.setObjectName("Backup_Button")
         self.Backup_Button.clicked.connect(self.StartMainFunction)
+
+        # setting button
         self.Setting_Button = QtWidgets.QPushButton(Main)
         self.Setting_Button.setGeometry(QtCore.QRect(240, 250, 113, 32))
         font = QtGui.QFont()
@@ -41,6 +49,8 @@ class Ui_Main(object):
         self.Setting_Button.setLocale(QtCore.QLocale(QtCore.QLocale.English, QtCore.QLocale.UnitedStates))
         self.Setting_Button.setObjectName("Setting_Button")
         self.Setting_Button.clicked.connect(self.openSetting)
+
+        # label for drive2local
         self.label = QtWidgets.QLabel(Main)
         self.label.setGeometry(QtCore.QRect(190, 40, 211, 91))
         font = QtGui.QFont()
