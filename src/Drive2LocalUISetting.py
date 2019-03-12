@@ -13,18 +13,20 @@ from PyQt5.QtWidgets import QFileDialog
 
 class Ui_Setting(object):
 	# initial global value for text browser display
-	global backup_dir, log_dir
-	backup_dir = "Choose the Directory to Store Backups"
-	log_dir = "Choose the Directory to Store Backup Logs"
+	#global backup_dir, log_dir
+	def __init__(self):
+		self.backup_dir = "Choose the Directory to Store Backups"
+		self.log_dir = "Choose the Directory to Store Backup Logs"
+	
 	def open_backup_dir(self):
 		# choose an existing directory from users local drive as the dirctory to store the backups
-		backup_dir = QFileDialog.getExistingDirectory(None, "select directory")
-		self.textBrowser_backup.setText(backup_dir)
+		self.backup_dir = QFileDialog.getExistingDirectory(None, "select directory")
+		self.textBrowser_backup.setText(self.backup_dir)
 		
 	def open_log_dir(self):
 		# choose an existing directory from users local drive as the dirctory to store the backup logs
-		log_dir = QFileDialog.getExistingDirectory(None, "select directory")
-		self.textBrowser_log.setText(log_dir)
+		self.log_dir = QFileDialog.getExistingDirectory(None, "select directory")
+		self.textBrowser_log.setText(self.log_dir)
 		
 	def setupUi(self, Setting):
 		# canvas size
@@ -288,15 +290,15 @@ class Ui_Setting(object):
 		#config.set_time(int(ntime[:2]),int(ntime[3:5]))
 
 		#Set backup_root and log_root
-		if backup_dir != "Choose the Directory to Store Backups":
-			file.write(backup_dir+"\n")
+		if self.backup_dir != "Choose the Directory to Store Backups":
+			file.write(str(self.backup_dir)+"\n")
 			#config.set_backup_root(backup_dir)
 			#config.set_log_root(log_dir)
 		else:
 			file.write("\"\"\n")
 
-		if log_dir != "Choose the Directory to Store Backup Logs":
-			file.write(backup_dir+"\n")
+		if self.log_dir != "Choose the Directory to Store Backup Logs":
+			file.write(str(self.backup_dir)+"\n")
 		else:
 			file.write("\"\"\n")
 
@@ -341,6 +343,6 @@ class Ui_Setting(object):
 		self.checkBox_file_type.setText(_translate("Setting", "Backup Items Based on File Type "))
 		self.pushButton_apply.setText(_translate("Setting", "Apply"))
 		self.pushButton_cancel.setText(_translate("Setting", "Cancel"))
-		self.textBrowser_backup.setText(_translate("Setting", backup_dir))
-		self.textBrowser_log.setText(_translate("Setting", log_dir))
+		self.textBrowser_backup.setText(_translate("Setting", self.backup_dir))
+		self.textBrowser_log.setText(_translate("Setting", self.log_dir))
 
