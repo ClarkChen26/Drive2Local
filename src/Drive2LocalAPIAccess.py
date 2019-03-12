@@ -84,7 +84,7 @@ def getFilesMin(DRIVE, logger):
 			break
 	return files
 	
-def getFiles(DRIVE):
+def getFiles(DRIVE, logger):
 	'''
 	Returns a list of all files stored in Google Drive that the user has
 	read access to.

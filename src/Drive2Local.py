@@ -52,7 +52,7 @@ def main():
 	# Setup the users Google Drive and save the instance
 	DRIVE = Drive2LocalAPIAccess.getDrive()
 	# Get a listing of all files the user has access to
-	files = Drive2LocalAPIAccess.getFiles(DRIVE)
+	files = Drive2LocalAPIAccess.getFiles(DRIVE, Drive_logger)
 
 	path = Drive2LocalHandleLocal.buildDir()
 
