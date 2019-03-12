@@ -350,7 +350,7 @@ class Ui_Setting(object):
 			file.write("./\n")
 
 		if self.log_dir != "Choose the Directory to Store Backup Logs":
-			file.write(str(self.backup_dir)+'/'+"\n")
+			file.write(str(self.log_dir)+'/'+"\n")
 		else:
 			file.write("./\n")
 
