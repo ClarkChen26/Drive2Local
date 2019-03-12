@@ -60,7 +60,7 @@ class Ui_Setting(object):
 		self.label_frequency_day.setObjectName("label_frequency_day")
 		# label back up log directory
 		self.label_log_dir = QtWidgets.QLabel(Setting)
-		self.label_log_dir.setGeometry(QtCore.QRect(290, 10, 120, 20))
+		self.label_log_dir.setGeometry(QtCore.QRect(290, 10, 130, 20))
 		self.label_log_dir.setAutoFillBackground(False)
 		self.label_log_dir.setLocale(QtCore.QLocale(QtCore.QLocale.English, QtCore.QLocale.UnitedStates))
 		self.label_log_dir.setObjectName("label_log_dir")
