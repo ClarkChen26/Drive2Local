@@ -256,7 +256,16 @@ class Ui_Setting(object):
 			self.timeEdit.setTime(time)
 			self.spinBox_backup_numbers.setValue(int(l[11]))
 			self.textBrowser_backup.setText(l[8])
+			self.backup_dir = l[8]
 			self.textBrowser_log.setText(l[9])
+			self.log_dir = l[9]
+			
+			if l[10] == "True":
+				self.checkBox_auto_delete.setChecked(True)
+
+			if l[4] == "True":
+				self.checkBox_auto_backup.setChecked(True)
+
 
 
 	def accept(self):
@@ -342,14 +351,14 @@ class Ui_Setting(object):
 		#config.set_time(int(ntime[:2]),int(ntime[3:5]))
 
 		#Set backup_root and log_root
-		if self.backup_dir != "Choose the Directory to Store Backups":
+		if self.backup_dir != "Choose the Directory to Store Backups" or "./":
 			file.write(str(self.backup_dir)+'/'+"\n")
 			#config.set_backup_root(backup_dir)
 			#config.set_log_root(log_dir)
 		else:
 			file.write("./\n")
 
-		if self.log_dir != "Choose the Directory to Store Backup Logs":
+		if self.log_dir != "Choose the Directory to Store Backup Logs" or "./":
 			file.write(str(self.log_dir)+'/'+"\n")
 		else:
 			file.write("./\n")
