@@ -259,7 +259,7 @@ class Ui_Setting(object):
 			self.backup_dir = l[8]
 			self.textBrowser_log.setText(l[9])
 			self.log_dir = l[9]
-			
+
 			if l[10] == "True":
 				self.checkBox_auto_delete.setChecked(True)
 
